@@ -2,7 +2,7 @@ import { FaRegStar, FaStar, FaStarHalf } from "react-icons/fa";
 import Layout from "../../components/layout/Layout";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { useContext, useEffect, useState } from "react";
-import myContext from "../../context/MyContext";
+import myContext from "../../context/myContext";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { doc, getDoc, setDoc } from "firebase/firestore";
