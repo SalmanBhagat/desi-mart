@@ -11,7 +11,7 @@ import UserDashboard from "./pages/user/UserDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AddProductPage from "./pages/admin/AddProductPage";
 import UpdateProductPage from "./pages/admin/UpdateProductPage";
-import MyState from "./context/MyState";
+import MyState from "./context/myState";
 import { ToastContainer } from "react-toastify";
 import { ProtectedRouteForUser } from "./pages/protectedRoute/ProtectedRouteForUser";
 import { ProtectedRouteForAdmin } from "./pages/protectedRoute/ProtectedRouteForAdmin";
