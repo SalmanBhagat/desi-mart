@@ -5,7 +5,7 @@ import ProductDetail from "../../components/admin/ProductDetail";
 import OrderDetail from "../../components/admin/OrderDetail";
 import UserDetail from "../../components/admin/UserDetail";
 import { useContext } from "react";
-import myContext from "../../context/MyContext";
+import myContext from "../../context/myContext";
 
 
 // import { FaBoxOpen, FaUsers } from "react-icons/fa";

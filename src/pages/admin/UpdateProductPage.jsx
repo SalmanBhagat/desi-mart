@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import myContext from "../../context/MyContext";
+import myContext from "../../context/myContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { doc, getDoc, setDoc, Timestamp, updateDoc } from "firebase/firestore";

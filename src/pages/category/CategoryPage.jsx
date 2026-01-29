@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import Layout from "../../components/layout/Layout";
 import { useContext, useEffect } from "react";
-import myContext from "../../context/MyContext";
+import myContext from "../../context/myContext";
 import { SkeletonLoader } from "../../components/loader/SkeletonLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteFormCart } from "../../redux/cartSlice";

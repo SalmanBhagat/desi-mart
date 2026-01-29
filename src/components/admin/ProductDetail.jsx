@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import myContext from "../../context/MyContext";
+import myContext from "../../context/myContext";
 import { FiBox, FiTrash2 } from "react-icons/fi";
 import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { GrEdit } from "react-icons/gr";

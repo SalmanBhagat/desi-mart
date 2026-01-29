@@ -1,10 +1,10 @@
 // import { useContext, useState } from "react";
-// import myContext from "../../context/MyContext";
+// import myContext from "../../context/myContext";
 // import { useNavigate } from "react-router-dom";
 
 import { useContext } from "react"
 import { HiOutlineSearch } from "react-icons/hi"
-import myContext from "../../context/MyContext"
+import myContext from "../../context/myContext"
 
 // // Search data
 // // const searchData = [

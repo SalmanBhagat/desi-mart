@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import myContext from "../../context/MyContext";
+import myContext from "../../context/myContext";
 import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
