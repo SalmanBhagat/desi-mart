@@ -19,7 +19,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
           {/* Overlay */}
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             {/* Popup Card */}
-            <div className="w-full max-w-lg rounded-2xl bg-white shadow-2xl overflow-hidden">
+            <div className="w-full max-w-lg mx-4 rounded-2xl bg-white shadow-2xl overflow-hidden">
               {/* Header */}
               <div className="bg-pink-400 px-4 py-3">
                 <h2 className="text-lg font-semibold text-white">

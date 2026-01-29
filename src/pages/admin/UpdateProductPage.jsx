@@ -9,7 +9,7 @@ import { useEffect } from "react";
 // Category List
 const categoryList = [
   {
-    name: "fation",
+    name: "fashion",
   },
   {
     name: "shirt",

@@ -96,24 +96,23 @@ const CartPage = () => {
     };
 
     try {
-    const orderRef = collection(fireDB, "order");
-    addDoc(orderRef, orderInfo);
-    setAddressInfo({
-      name: "",
-      address: "",
-      pincode: "",
-      mobileNumber: "",
-    })
-    toast.success("Order Placed Successfully");
-  } catch (error) {
-    console.log(error);
-  }
-
+      const orderRef = collection(fireDB, "order");
+      addDoc(orderRef, orderInfo);
+      setAddressInfo({
+        name: "",
+        address: "",
+        pincode: "",
+        mobileNumber: "",
+      });
+      toast.success("Order Placed Successfully");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-6 py-10 mt-14.25">
         <h1 className="text-3xl font-semibold mb-8">Shopping Cart</h1>
 
         {cartItems?.length > 0 ? (
@@ -138,40 +137,34 @@ const CartPage = () => {
                     <img
                       src={productImageUrl}
                       alt={title}
-                      className="w-33 h-33 object-contain bg-gray-50 rounded-lg"
+                      className="w-33 h-33 sm:w-33 sm:h-33 object-contain bg-gray-50 rounded-lg"
                     />
                     {/* Info */}
-                    <div className="flex-1">
-                      
-                      <h2 className="font-semibold text-lg">{title}</h2>
-                      <p className="text-sm text-gray-500 mt-1"> {category} </p>
+                    <div className="flex-1 min-w-0">
+                      <h2 className="font-semibold text-lg truncate max-w-full">{title}</h2>
+                      <p className="text-sm text-gray-500 mt-0 md:mt-1"> {category} </p>
                       {/* Price */}
-                      <div className="flex items-center gap-3 mt-2">
-                        
+                      <div className="flex items-center gap-3 mt-1 md:mt-2">
                         <span className="font-semibold text-lg text-green-600">
-                          
                           ₹{price.toLocaleString()}
                         </span>
                         {/* <span className="line-through text-gray-400 text-sm"> ₹{item.originalPrice.toLocaleString()} </span> <span className="text-green-600 text-sm"> {discount} </span> */}
                       </div>
                       {/* Actions */}
-                      <div className="flex items-center gap-6 mt-4">
-                        
+                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 sm:gap-6 mt-2 md:mt-4">
                         {/* Quantity */}
                         <div className="flex items-center border rounded-md">
-                          
                           <button
                             onClick={() => handleDecrement(id)}
-                            className="px-3 py-1 cursor-pointer"
+                            className="px-2 py-1 cursor-pointer"
                           >
-                            
                             <FaMinus size={12} />
                           </button>
-                          <span className="px-4">{quantity}</span>
+                          <span className="px-2 sm:px-4">{quantity}</span>
                           {/* <input type="text" value={quantity} className="w-2 mx-4" /> */}
                           <button
                             onClick={() => handleIncrement(id)}
-                            className="px-3 py-1 cursor-pointer"
+                            className="px-2 py-1 cursor-pointer"
                           >
                             <FaPlus size={12} />
                           </button>
@@ -181,7 +174,6 @@ const CartPage = () => {
                           onClick={() => deleteCart(item)}
                           className="flex items-center gap-1 text-red-500 text-sm cursor-pointer"
                         >
-                          
                           <BsTrash3 size={13} /> Remove
                         </button>
                       </div>
@@ -218,34 +210,41 @@ const CartPage = () => {
                   <span>₹{cartTotal}</span>
                 </div>
               </div>
-              {user
-                ? <BuyNowModal addressInfo={addressInfo} setAddressInfo={setAddressInfo} buyNowFunction={buyNowFunction}/>
-                : <Navigate to={"/login"}/>
-              }
+              {user ? (
+                <BuyNowModal
+                  addressInfo={addressInfo}
+                  setAddressInfo={setAddressInfo}
+                  buyNowFunction={buyNowFunction}
+                />
+              ) : (
+                <Navigate to={"/login"} />
+              )}
             </div>
           </div>
         ) : (
           // ✅ EMPTY CART STATE (FULL WIDTH)
-          <div className="flex flex-col items-center justify-center py-16 px-6 bg-pink-400/10 rounded-xl border border-pink-200 text-center">
+          <div
+            className="flex flex-col items-center justify-center py-6 px-4 sm:py-8 sm:px-6 bg-pink-400/10 rounded-xl border border-pink-200 text-center"
+          >
             {/* Icon */}
-            <div className="bg-pink-400 text-white rounded-full p-5 mb-4">
-              <BsCartX size={36} />
+            <div className="bg-pink-400 text-white rounded-full p-4 mb-3 sm:mb-4">
+              <BsCartX size={28} className="sm:size-8 md:size-9" />
             </div>
 
             {/* Heading */}
-            <h2 className="text-2xl font-semibold text-pink-600">
+            <h2 className="text-xl sm:text-2xl font-semibold text-pink-600">
               Your cart is empty
             </h2>
 
             {/* Description */}
-            <p className="text-gray-600 mt-2 max-w-sm">
+            <p className="text-sm sm:text-base text-gray-600 mt-2 max-w-xs sm:max-w-sm">
               Looks like you haven’t added anything to your cart yet. Start
               shopping to see products here.
             </p>
 
             {/* Action Button */}
             <button
-              className="mt-6 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg transition"
+              className="mt-4 sm:mt-6 bg-pink-600 hover:bg-pink-700 text-white text-sm sm:text-base px-4 py-1.5 sm:px-6 sm:py-2 rounded-lg transition "
               onClick={() => navigate("/allproduct")}
             >
               Continue Shopping

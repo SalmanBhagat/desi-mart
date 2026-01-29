@@ -16,8 +16,10 @@ import { ToastContainer } from "react-toastify";
 import { ProtectedRouteForUser } from "./pages/protectedRoute/ProtectedRouteForUser";
 import { ProtectedRouteForAdmin } from "./pages/protectedRoute/ProtectedRouteForAdmin";
 import CategoryPage from "./pages/category/CategoryPage";
+import { useEffect, useState } from "react";
 
 const App = () => {
+
   return (
     <MyState>
     <BrowserRouter>
@@ -52,7 +54,7 @@ const App = () => {
             </ProtectedRouteForAdmin>
           } />
         </Routes>
-        <ToastContainer position="top-center" autoClose={2000} />
+        <ToastContainer position="top-center" autoClose={2000}/>
     </BrowserRouter>
     </MyState>
   );

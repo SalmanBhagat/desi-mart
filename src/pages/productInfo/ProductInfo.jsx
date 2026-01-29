@@ -56,71 +56,82 @@ const ProductInfo = () => {
 
   return (
     <Layout>
-      <div className="max-w-5xl mx-auto mt-6 bg-white rounded-2xl shadow-xl overflow-hidden">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          {loading ? (
-            <SkeletonLoader type="product-info" />
+      <div className="max-w-5xl mx-6 lg:mx-auto bg-white rounded-xl md:rounded-2xl shadow-lg md:shadow-xl overflow-hidden mt-20 mb-6 sm:mt-20 sm:mb-6 md:mt-28">
+  <div className="grid grid-cols-1 md:grid-cols-2">
+    {loading ? (
+      <SkeletonLoader type="product-info" />
+    ) : (
+      <>
+        {/* LEFT IMAGE */}
+        <div className="border-b md:border-b-0 md:border-r border-gray-200 flex items-center justify-center p-4 sm:p-6">
+          <img
+            src={product?.productImageUrl}
+            alt={product?.title}
+            className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 
+                       object-contain hover:scale-105 transition duration-300"
+          />
+        </div>
+
+        {/* RIGHT CONTENT */}
+        <div className="px-5 sm:px-7 md:px-10 py-6 md:py-7 flex flex-col gap-3 sm:gap-4 md:gap-5">
+          
+          {/* TITLE */}
+          <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-gray-900 leading-snug">
+            {product?.title}
+          </h1>
+
+          {/* RATING */}
+          <div className="flex items-center gap-2">
+            <div className="flex text-yellow-400">
+              <FaStar size={16} />
+              <FaStar size={16} />
+              <FaStar size={16} />
+              <FaStarHalfStroke size={16} />
+              <FaRegStar size={16} />
+            </div>
+            <span className="text-xs sm:text-sm text-gray-500">
+              (4.5 rating)
+            </span>
+          </div>
+
+          {/* PRICE */}
+          <div className="flex items-center gap-3">
+            <span className="text-xl sm:text-2xl md:text-3xl font-semibold text-green-600">
+              ₹ {product?.price}
+            </span>
+          </div>
+
+          {/* DESCRIPTION */}
+          <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+            {product?.description}
+          </p>
+
+          {/* BUTTON */}
+          {cartItems?.some((p) => p.id === product?.id) ? (
+            <button
+              onClick={() => deleteCart(product)}
+              className="mt-3 sm:mt-4 w-full text-sm sm:text-base 
+                         bg-pink-400 text-white py-1.5 sm:py-2 
+                         rounded-md sm:rounded-lg hover:bg-pink-500 transition"
+            >
+              Delete from Cart
+            </button>
           ) : (
-            <>
-              {/* LEFT IMAGE */}
-              <div className="bg-gray-100 flex items-center justify-center ">
-                <img
-                  src={product?.productImageUrl}
-                  alt={product?.title}
-                  className="w-100 h-100 object-contain hover:scale-105 transition duration-300"
-                />
-              </div>
-
-              {/* RIGHT CONTENT */}
-              <div className="px-10 py-7 flex flex-col gap-5">
-                {/* TITLE */}
-                <h1 className="text-3xl font-bold text-gray-900 leading-tight">
-                  {product?.title}
-                </h1>
-
-                {/* RATING */}
-                <div className="flex items-center gap-2">
-                  <div className="flex text-yellow-400">
-                    <FaStar fill="currentColor" size={22} />
-                    <FaStar fill="currentColor" size={22} />
-                    <FaStar fill="currentColor" size={22} />
-                    <FaStarHalfStroke fill="currentColor" size={22} />
-                    <FaRegStar fill="currentColor" size={22} />
-                  </div>
-                  <span className="text-gray-500 text-sm">(4.5 rating)</span>
-                </div>
-
-                {/* PRICE */}
-                <div className="flex items-center gap-4">
-                  <span className="text-3xl font-semibold text-green-600">
-                    ₹ {product?.price}
-                  </span>
-                  {/* <span className="text-gray-400 line-through text-lg">
-              ₹3,499
-            </span> */}
-                </div>
-
-                {/* DESCRIPTION */}
-                <p className="text-gray-600 text-lg h-30 leading-relaxed">
-                  {product?.description}
-                </p>
-                {/* BUTTON */}
-                {
-                    cartItems?.some((p) => p.id === product?.id)
-                    ?
-                     <button onClick={() => deleteCart(product)} className="mt-4 w-full bg-pink-400 text-white py-2 rounded-lg hover:bg-pink-500 transition">
-                      Delete to Cart
-                    </button>
-                    : 
-                     <button onClick={() => addCart(product)} className="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800 transition">
-                      Add to Cart
-                    </button>
-                   }
-              </div>
-            </>
+            <button
+              onClick={() => addCart(product)}
+              className="mt-3 sm:mt-4 w-full text-sm sm:text-base 
+                         bg-pink-600 text-white py-1.5 sm:py-2 
+                         rounded-md sm:rounded-lg hover:bg-pink-800 transition"
+            >
+              Add to Cart
+            </button>
           )}
         </div>
-      </div>
+      </>
+    )}
+  </div>
+</div>
+
     </Layout>
   );
 };

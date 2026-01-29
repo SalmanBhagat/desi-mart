@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import myContext from "../../context/MyContext";
 import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { useNavigate } from "react-router-dom";
+import Pagination from "../pagination/Pagination";
 
 const UserDetail = () => {
 
@@ -18,8 +19,33 @@ const UserDetail = () => {
     guest: "bg-green-100 text-green-700",
   };
 
-  let loadin = true;
-  // let getAllOrde = 0
+  // Pagination Logic
+const getPerPage = () => {
+  if (window.innerWidth < 640) return 5;     // mobile
+  if (window.innerWidth < 1024) return 8;    // tablet
+  return 10;                                 // desktop
+};
+
+  const [perPage, setPerPage] = useState(getPerPage());
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(getAllUser.length / perPage);
+
+  const paginatedUsers = getAllUser.slice(
+    (currentPage - 1) * perPage,
+    currentPage * perPage,
+  );
+
+  useEffect(() => {
+  const handleResize = () => {
+    setPerPage(getPerPage());
+    setCurrentPage(1); // important: reset page
+  };
+
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
 
   return (
     <div className="mt-6">
@@ -104,16 +130,16 @@ const UserDetail = () => {
                   ? Array.from({ length: 2 }).map((_, i) => (
                       <SkeletonLoader key={i} type="user-table" />
                     ))
-                  : getAllUser?.map((user, index) => {
+                  : paginatedUsers?.map((user, index) => {
                       const { id, name, email, role, date } = user;
                       return (
                         <tr
                           key={index}
                           className="hover:bg-pink-100/40 transition"
                         >
-                          <td className="px-6 py-4">{index + 1}</td>
+                          <td className="px-6 py-4">{(currentPage - 1) * perPage + index + 1}</td>
                           <td className="px-6 py-4 font-medium uppercase">
-                            {id.slice(0, 8)}
+                            {id}
                           </td>
                           <td className="px-6 py-4">{name}</td>
                           <td className="px-6 py-4">{email}</td>
@@ -126,7 +152,7 @@ const UserDetail = () => {
                               {role}
                             </span>
                           </td>
-                          <td className="px-6 py-4">{date}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm">{date}</td>
                           <td className="px-6 py-4 text-center">
                             <button
                               onClick={() => userDelete(id)}
@@ -144,6 +170,14 @@ const UserDetail = () => {
               </tbody>
             </table>
           )}
+            {/* Pagination Bar */}
+          <div className="border-t border-pink-100 bg-pink-50/40 px-4 py-4">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -17,6 +17,8 @@ const CategoryPage = () => {
   const context = useContext(myContext);
   const { getAllProduct, loading } = context;
 
+  console.log(getAllProduct);
+
   const filterProduct = getAllProduct?.filter((obj) =>
     obj.category.includes(categoryname),
   );
@@ -41,7 +43,7 @@ const CategoryPage = () => {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 py-8 mt-14.25">
         <div className="flex flex-wrap justify-center gap-6">
           {loading
             ? Array.from({ length: skeletonCount }).map((_, i) => (

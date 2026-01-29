@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/MyContext";
 import { FiBox, FiTrash2 } from "react-icons/fi";
@@ -7,6 +7,7 @@ import { GrEdit } from "react-icons/gr";
 import { deleteDoc, doc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
+import Pagination from "../pagination/Pagination";
 
 const ProductDetail = () => {
   const context = useContext(myContext);
@@ -29,6 +30,35 @@ const ProductDetail = () => {
     }
   };
 
+// Pagination Logic
+const getPerPage = () => {
+  if (window.innerWidth < 640) return 5;     // mobile
+  if (window.innerWidth < 1024) return 8;    // tablet
+  return 10;                                 // desktop
+};
+
+  const [perPage, setPerPage] = useState(getPerPage());
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(getAllProduct.length / perPage);
+
+  const paginatedData = getAllProduct.slice(
+    (currentPage - 1) * perPage,
+    currentPage * perPage,
+  );
+
+  useEffect(() => {
+  const handleResize = () => {
+    setPerPage(getPerPage());
+    setCurrentPage(1); // important: reset page
+  };
+
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
+
   return (
     <div className="mt-6">
       {/* Card */}
@@ -44,7 +74,7 @@ const ProductDetail = () => {
           </Link>
         </div>
         {/* Table */}
-        <div className="overflow-x-auto  relative">
+        <div className="relative overflow-x-auto bg-white rounded-xl shadow">
           <table className="w-full text-sm text-left">
             {/* Table Head */}
             <thead className="bg-pink-100 text-pink-700">
@@ -85,10 +115,12 @@ const ProductDetail = () => {
                 </tr>
               ) : (
                 // Products list Show for UI
-                getAllProduct.map((item, index) => (
+                paginatedData.map((item, index) => (
                   <tr key={index} className="hover:bg-pink-50 transition">
                     {/* S.No */}
-                    <td className="px-6 py-4">{index + 1}</td>
+                    <td className="px-6 py-4">
+                      {(currentPage - 1) * perPage + index + 1}
+                    </td>
                     {/* Image */}
                     <td className="px-6 py-4">
                       <img
@@ -103,7 +135,7 @@ const ProductDetail = () => {
                     </td>
                     {/* Category */}
                     <td className="px-6 py-4">
-                      <span className="px-3 py-1 text-xs rounded-full font-bold bg-pink-100 text-pink-600">
+                      <span className="px-3 py-1 text-xs rounded-full font-bold bg-pink-100 text-pink-600 capitalize">
                         {item.category}
                       </span>
                     </td>
@@ -139,6 +171,14 @@ const ProductDetail = () => {
               )}
             </tbody>
           </table>
+          {/* Pagination Bar */}
+          <div className="border-t border-pink-100 bg-pink-50/40 px-4 py-4">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </div>
         </div>
       </div>
     </div>

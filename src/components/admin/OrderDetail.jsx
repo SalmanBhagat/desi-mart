@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import myContext from "../../context/MyContext";
 import { SkeletonLoader } from "../loader/SkeletonLoader";
 
@@ -6,10 +6,15 @@ const OrderDetail = () => {
   const context = useContext(myContext);
   const { getAllOrder, orderDelete, loading, getAllProductFunction } = context;
 
-  console.log(getAllOrder);
-
   let rowNo = 1;
-  let loadin = true;
+
+  const [showAll, setShowAll] = useState(false);
+
+  const visibleOrders = showAll
+  ? getAllOrder
+  : getAllOrder.slice(0, 8);
+
+  console.log(visibleOrders);
 
   return (
     <div className="mt-6">
@@ -19,8 +24,8 @@ const OrderDetail = () => {
         <div className="flex items-center justify-between px-6 py-4 bg-pink-400">
           <h2 className="text-xl font-semibold text-white">Order Details</h2>
 
-          <button className="bg-white text-pink-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-pink-50 transition">
-            View All Orders
+          <button onClick={() => setShowAll(!showAll)} className="bg-white text-pink-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-pink-50 transition">
+             {showAll ? "Show Less" : "View All Orders"}
           </button>
         </div>
 
@@ -93,7 +98,7 @@ const OrderDetail = () => {
                   <SkeletonLoader key={i} type="order-table" />
                 ))
               ) : 
-                getAllOrder.map((order, orderIndex) =>
+                visibleOrders.map((order, orderIndex) =>
                   order.cartItems.map((item, itemIndex) => {
                     const {
                       id,
@@ -116,7 +121,7 @@ const OrderDetail = () => {
 
                         {/* 2. Order ID */}
                         <td className="px-4 py-3 font-medium text-gray-800">
-                          #{orderId?.slice(0, 8)}
+                          {orderId?.slice(0, 8)}
                         </td>
 
                         {/* 3. Image */}
@@ -132,7 +137,7 @@ const OrderDetail = () => {
                         <td className="px-4 py-3 min-w-45">{title}</td>
 
                         {/* 5. Category */}
-                        <td className="px-4 py-3">{category}</td>
+                        <td className="px-4 py-3 capitalize">{category}</td>
 
                         {/* 6. Price */}
                         <td className="px-4 py-3 font-medium">₹{price}</td>
@@ -153,7 +158,7 @@ const OrderDetail = () => {
                         </td>
 
                         {/* 10. Name */}
-                        <td className="px-4 py-3">{name}</td>
+                        <td className="px-4 py-3 capitalize">{name}</td>
 
                         {/* 11. Address */}
                         <td className="px-4 py-3 min-w-55">{address}</td>
@@ -168,7 +173,7 @@ const OrderDetail = () => {
                         <td className="px-4 py-3">{order?.email}</td>
 
                         {/* 15. Date */}
-                        <td className="px-4 py-3">{date}</td>
+                        <td className="px-4 py-3 whitespace-nowrap">{date}</td>
 
                         {/* 16. Delete */}
                         <td className="px-4 py-3 text-center">

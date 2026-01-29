@@ -5,6 +5,9 @@ import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addToCart, deleteFormCart } from "../../redux/cartSlice";
+import { HiOutlineSearch } from "react-icons/hi";
+import SearchBar from "../searchBar/SearchBar";
+
 
 // Product Data
 // const productData = [
@@ -135,90 +138,120 @@ const HomePageProductCard = () => {
 
   // Context function
   const context = useContext(myContext);
-  const { getAllProduct, loading } = context;
-
-  // Redux functions 
+  const { getAllProduct, loading, searchKey, setSearchKey, filterType, setFilterType,filterPrice,  setFilterPrice } = context;
+  // Redux functions
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   // add to Cart Function
   const addCart = (item) => {
-      dispatch(addToCart(item));
-      toast.success("Add to Cart");
-  }
+    dispatch(addToCart(item));
+    toast.success("Add to Cart");
+  };
 
   // Delete to cart function
   const deleteCart = (item) => {
     dispatch(deleteFormCart(item));
     toast.success("delete from cart");
-  }
+  };
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
-  },[cartItems])
+  }, [cartItems]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
-      {/* Section Title */}
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-gray-800">Featured Products</h1>
-        <p className="text-gray-500 mt-2">
-          Discover our best quality products curated just for you
-        </p>
-      </div>
+    <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-10">
+      <SearchBar/>
 
+{/* Section Title */}
+      <div className="mb-6 md:mb-8 text-left">
+        <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-gray-800">
+          <span className="border-b-3 border-pink-600">Our La</span>test Collection
+        </h1>
+        {/* <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1 md:mt-2">
+          Discover our best quality products curated just for you
+        </p> */}
+      </div>
       {/* Product Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
         {loading
           ? Array.from({ length: 8 }).map((_, i) => (
               <SkeletonLoader key={i} type="product-card" />
             ))
-          : getAllProduct.slice(0, 8).map((item, index) => {
-              const { id,title, price, productImageUrl } = item;
+          : getAllProduct.filter((obj) => obj.title.toLowerCase().includes(searchKey)).filter
+          ((obj) => obj.category.toLowerCase().includes(filterType))
+          .filter((obj) => {
+    if (!filterPrice) return true; // All Prices
+
+    // const price = Number(obj.price);
+
+    if (filterPrice === "0-500") {
+      return obj.price < 500;
+    }
+
+    if (filterPrice === "500-1000") {
+      return obj.price >= 500 && obj.price <= 1000;
+    }
+
+    if (filterPrice === "1000-5000") {
+      return obj.price >= 1000 && obj.price <= 5000;
+    }
+
+    if (filterPrice === "5000+") {
+      return obj.price > 5000;
+    }
+
+    return true;
+  }).map((item, index) => {
+              const { id, title, price, productImageUrl } = item;
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden"
+                  className="bg-white rounded-lg md:rounded-xl shadow hover:shadow-xl transition overflow-hidden"
                 >
                   {/* Image */}
-                  <div className="h-56 flex items-center justify-center bg-white transform transition-all duration-300 ease-out hover:scale-105">
+                  <div className="h-44 sm:h-48 md:h-56 flex items-center justify-center bg-white hover:scale-105 transition cursor-pointer">
                     <img
                       onClick={() => navigate(`/productinfo/${id}`)}
                       src={productImageUrl}
                       alt={title}
-                      className="h-50 object-contain"
+                      className="h-36 sm:h-40 md:h-44 object-contain"
                     />
                   </div>
 
                   {/* Content */}
-                  <div className="p-4 bg-[#FAF9F6]">
+                  <div className="p-3 sm:p-4 bg-[#FAF9F6]">
                     {/* Tag */}
-                    <h2 className="text-sm text-gray-400 font-medium mb-1">
+                    <h2 className="text-[10px] sm:text-xs text-gray-400 font-medium mb-0.5">
                       E-bharat
                     </h2>
 
                     {/* Title */}
-                    <h3 className="text-base font-semibold text-gray-800 truncate">
+                    <h3 className="text-sm sm:text-base font-semibold text-gray-800 truncate">
                       {title.substring(0, 35)}
                     </h3>
 
                     {/* Price */}
-                    <p className="text-lg font-bold text-green-600 mt-2">
+                    <p className="text-base sm:text-lg font-bold text-green-600 mt-1 sm:mt-2">
                       ₹{price}
                     </p>
 
                     {/* Button */}
-                    {
-                    cartItems?.some((p) => p.id === item.id)
-                    ?
-                     <button onClick={() => deleteCart(item)} className="mt-4 w-full bg-pink-400 text-white py-2 rounded-lg hover:bg-pink-500 transition">
-                      Delete to Cart
-                    </button>
-                    : 
-                     <button onClick={() => addCart(item)} className="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800 transition">
-                      Add to Cart
-                    </button>
-                   }
+                    {cartItems?.some((p) => p.id === item.id) ? (
+                      <button
+                        onClick={() => deleteCart(item)}
+                        className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-500 transition"
+                      >
+                        Delete from Cart
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => addCart(item)}
+                        className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-800 transition"
+                      >
+                        Add to Cart
+                      </button>
+                    )}
                   </div>
                 </div>
               );

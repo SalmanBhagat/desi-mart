@@ -14,7 +14,9 @@
 }
 
 
-/* Tailwind se override react-tabs ki css style */
+/* ===============================================
+   Tailwind se override react-tabs ki css style
+================================================== */
 .react-tabs__tab--selected {
   background-color: #ffffff;
   border-radius: 0.75rem;
@@ -33,6 +35,10 @@
   border: none;
 }
 
+
+/* =======================================
+            Toast Message style
+========================================== */
 /* Toast Message Color line show */
 .Toastify__progress-bar {
   background: linear-gradient(
@@ -46,7 +52,42 @@
   );
 }
 
-/* Scroll bar ke liye custom color style */
+/* MOBILE (≤480px) */
+@media (max-width: 480px) {
+  .Toastify__toast-container--top-center {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    /* border-radius: 100px; */
+  }
+
+  .Toastify__toast {
+    width: 100%;
+    max-width: 100%;
+    font-size: 12px;
+    padding: 10px 12px;
+    border-radius: 0 0 6px 6px; /* ✅ now bottom corners visible */
+  }
+}
+
+/* DESKTOP (>480px) */
+@media (min-width: 481px) {
+  .Toastify__toast-container--top-center {
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    width: auto !important;
+    padding: 0 !important;
+  }
+}
+
+
+
+/* =======================================
+   Scroll bar ke liye custom color style
+========================================== */
 /* scroll-x pink theme */
 .scrollbar-pink::-webkit-scrollbar {
   height: 8px; /* horizontal scroll height */

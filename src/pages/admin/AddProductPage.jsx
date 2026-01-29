@@ -11,6 +11,9 @@ const categoryList = [
     name: "shirt",
   },
   {
+    name: "fashion",
+  },
+  {
     name: "jacket",
   },
   {
@@ -26,8 +29,11 @@ const categoryList = [
     name: "books",
   },
   {
-    name : "watch",
-  }
+    name: "watch",
+  },
+  {
+    name: "home",
+  },
 ];
 
 const AddProductPage = () => {
@@ -45,7 +51,7 @@ const AddProductPage = () => {
     category: "",
     description: "",
     quantity: 1,
-    time : Timestamp.now().toMillis(),
+    time: Timestamp.now().toMillis(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -66,8 +72,9 @@ const AddProductPage = () => {
     setLoading(true);
 
     try {
-      const productRef = collection(fireDB, "products");
-      await addDoc(productRef, product);
+      // const productRef = collection(fireDB, "products");
+      // await addDoc(productRef, product);
+      await addDoc(collection(fireDB, "products"), product);
       toast.success("Add Product Successfully");
       navigate("/admin-dashboard");
       setLoading(false);
@@ -75,12 +82,14 @@ const AddProductPage = () => {
       toast.error(error);
       setLoading(false);
       toast.error("Add Product Failed!");
+    } finally {
+      setLoading(false); // 🔑 yahi pe hona chahiye
     }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-pink-50">
-      <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6">
+      <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6 mx-4">
         {/* Main Title */}
         <h2 className="text-2xl font-bold text-center text-pink-600 mb-7">
           Add New Product
@@ -150,7 +159,9 @@ const AddProductPage = () => {
             className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none
             focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-500"
           >
-            <option disabled value="elect Product Type">Select Product Type</option>
+            <option disabled value="elect Product Type">
+              Select Product Type
+            </option>
             {categoryList?.map((value, index) => {
               const { name } = value;
               return (
@@ -188,13 +199,11 @@ const AddProductPage = () => {
             onClick={addProductFunction}
             disabled={loading}
             className={`w-full flex items-center justify-center gap-2 bg-pink-600 text-white py-2 rounded-lg font-semibold
-  hover:bg-pink-700 transition
+  hover:bg-pink-700 transition cursor-pointer
   ${loading && "opacity-70 cursor-not-allowed"}`}
           >
             {loading ? (
               <>
-                {/* Circle Loader */}
-                <span className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
                 <span>Loading...</span>
               </>
             ) : (

@@ -24,54 +24,53 @@ const Testimonial = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-10">
+  {/* Section Title */}
+  <div className="text-center mb-8 md:mb-12">
+    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+      Testimonials
+    </h2>
+    <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1 md:mt-2">
+      Trusted by <span className="text-pink-600 font-medium">customers</span> across India
+    </p>
+  </div>
 
-      {/* Section Title */}
-      <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-gray-800">
-          Testimonials
-        </h2>
-        <p className="text-gray-500 mt-2">
-          Trusted by <span className="text-pink-600">customers</span> across India
+  {/* Testimonials */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
+    {testimonials.map((item) => (
+      <div
+        key={item.id}
+        className="text-center px-4 sm:px-6"
+      >
+        {/* Image */}
+        <div className="flex justify-center mb-4 sm:mb-5">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-full object-cover border border-gray-300"
+          />
+        </div>
+
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3 sm:mb-4 line-clamp-4 min-h-[80px] sm:min-h-[96px]">
+          “{item.desc}”
+        </p>
+
+        {/* Divider */}
+        <div className="w-8 sm:w-10 h-0.5 bg-pink-600 mx-auto mb-3 sm:mb-4"></div>
+
+        {/* Name & Role */}
+        <h4 className="text-sm sm:text-base font-semibold text-gray-800">
+          {item.name}
+        </h4>
+        <p className="text-xs sm:text-sm text-gray-400">
+          {item.role}
         </p>
       </div>
-
-      {/* Testimonials */}
-      {/* Testimonials */}
-<div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-  {testimonials.map((item) => (
-    <div key={item.id} className="text-center px-6">
-
-      {/* Image */}
-      <div className="flex justify-center mb-5">
-        <img
-          src={item.image}
-          alt={item.name}
-          className="w-20 h-20 rounded-full object-cover border border-gray-300"
-        />
-      </div>
-
-      {/* Description (Fixed Height – Same Lines) */}
-      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-4 min-h-24">
-        “{item.desc}”
-      </p>
-
-      {/* Divider */}
-      <div className="w-10 h-0.5 bg-pink-700 mx-auto mb-4"></div>
-
-      {/* Name & Role */}
-      <h4 className="text-base font-semibold text-gray-800">
-        {item.name}
-      </h4>
-      <p className="text-sm text-gray-400">
-        {item.role}
-      </p>
-
-    </div>
-  ))}
+    ))}
+  </div>
 </div>
 
-    </div>
   );
 };
 

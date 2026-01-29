@@ -140,8 +140,13 @@ const MyState = ({ children }) => {
     }
   }
 
+  /* ============================================================
+   📦              Filter Logic
+   ============================================================ */
 
-
+   const [searchKey, setSearchKey] = useState("");
+   const [filterType, setFilterType] = useState("");
+   const [filterPrice, setFilterPrice] = useState("");
 
   // useEffect function
   useEffect(() => {
@@ -163,7 +168,13 @@ const MyState = ({ children }) => {
         getAllUser,
         getAllUserFunction,
         userDelete,
-      }}
+        searchKey, 
+        setSearchKey,
+        filterType, 
+        setFilterType,
+        filterPrice,
+        setFilterPrice
+      }}  
     >
       {children}
     </myContext.Provider>

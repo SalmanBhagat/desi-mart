@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Layout from "../../components/layout/Layout";
 import myContext from "../../context/MyContext";
-import { BsBoxSeam } from "react-icons/bs";
+import { BsBoxSeam, BsCartX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
@@ -16,16 +16,19 @@ const UserDashboard = () => {
   console.log(user);
 
   console.log("USER UID 👉", user?.uid);
-console.log(
-  "FILTER RESULT 👉",
-  getAllOrder.filter((o) => o.userId === user?.uid)
-);
+  console.log(
+    "FILTER RESULT 👉",
+    getAllOrder.filter((o) => o.userId === user?.uid),
+  );
 
+  console.log(getAllOrder);
+
+  const userOrders = getAllOrder?.filter((obj) => obj.userId === user?.uid);
 
   return (
     <Layout>
-      <div className="min-h-screen bg-pink-50 p-4 md:p-8">
-        <div className="max-w-5xl mx-auto space-y-6">
+      <div className="min-h-[calc(100vh-68px)] bg-pink-50 p-4 md:p-8">
+        <div className="max-w-5xl mx-auto space-y-6 mt-14.25">
           {/* ===== User Info ===== */}
           <div className="bg-white rounded-xl shadow p-6 flex items-center gap-4">
             <img
@@ -45,8 +48,41 @@ console.log(
           <div className="bg-pink-400 p-5 rounded-xl shadow space-y-6">
             {/* ===== Order Details Box ===== */}
             {getAllOrder.length > 0 ? (
-              getAllOrder?.filter((obj) => obj.userId === user?.uid)
-                .map((order, index) => {
+              userOrders.length === 0 ? (
+                // user Empty box
+                <div className="flex flex-col items-center justify-center bg-white rounded-xl border border-dashed border-gray-300 
+  p-6 sm:p-8 md:p-10 text-center shadow-sm"
+>
+  {/* Icon */}
+  <div
+    className="mb-4 sm:mb-5 flex items-center justify-center rounded-full bg-pink-100
+    h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20"
+  >
+    <BsCartX className="text-pink-500 text-2xl sm:text-3xl md:text-4xl" />
+  </div>
+
+  {/* Text */}
+  <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+    No Orders Yet
+  </h2>
+
+  <p className="mt-1.5 sm:mt-2 max-w-md text-xs sm:text-sm text-gray-600">
+    You haven’t placed any orders yet. Start shopping to see your orders here.
+  </p>
+
+  {/* CTA */}
+  <button
+    onClick={() => navigate("/allproduct")}
+    className="mt-4 sm:mt-6 rounded-lg bg-pink-500 
+    px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm 
+    font-medium text-white transition hover:bg-pink-600"
+  >
+    Start Shopping
+  </button>
+</div>
+
+              ) : (
+                map((order, index) => {
                   const { status, cartItems } = order;
                   return (
                     <div
@@ -94,12 +130,12 @@ console.log(
                           return (
                             <div
                               key={id || idx}
-                              className="flex gap-4 items-start"
+                              className="flex gap-3 sm:gap-4 items-start"
                             >
                               <img
                                 src={productImageUrl}
                                 alt={title}
-                                className="h-24 w-24 rounded-lg object-cover"
+                                className="h-18 w-18 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg object-cover"
                               />
 
                               <div className="flex-1">
@@ -135,6 +171,7 @@ console.log(
                     </div>
                   );
                 })
+              )
             ) : (
               // Empty UI Box
               <div className="flex min-h-[60vh] items-center justify-center">

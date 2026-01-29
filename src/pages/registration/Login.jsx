@@ -4,7 +4,7 @@ import myContext from "../../context/MyContext";
 import { signInWithEmailAndPassword } from "firebase/auth/web-extension";
 import { toast } from "react-toastify";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 const Login = () => {
   const context = useContext(myContext);
   const { loading, setLoading } = context;
@@ -38,6 +38,7 @@ const Login = () => {
       try {
         const q = query(
           collection(fireDB, "user"),
+          orderBy("time"),
           where("uid", "==", users.user.uid)
         )
         const data = onSnapshot(q, (QuerySnapshot) => {
@@ -48,12 +49,13 @@ const Login = () => {
             email: "",
             password: "",
           })
-          toast.success("Login successfully");
-
           setLoading(false);
 
+          toast.success("Login successfully");
+
+
           if (user.role == "user") {
-            navigate("/user-dashboard")
+            navigate("/")
           }else{
             navigate("/admin-dashboard");
           }

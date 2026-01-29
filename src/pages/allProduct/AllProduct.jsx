@@ -145,77 +145,80 @@ const AllProduct = () => {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-4 py-10">
-        {/* Section Title */}
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold text-gray-800">All Products</h1>
-          <p className="text-gray-500 mt-2">
-            Discover our best quality products curated just for you
-          </p>
-        </div>
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-10 mt-14">
+  {/* Section Title */}
+  <div className="mb-6 md:mb-8 text-center">
+    <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-gray-800">
+      All Products
+    </h1>
+    <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1 md:mt-2">
+      Discover our best quality products curated just for you
+    </p>
+  </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {loading
-            ? Array.from({ length: 8 }).map((_, i) => (
-                <SkeletonLoader key={i} type="product-card" />
-              ))
-            : getAllProduct?.map((item, index) => {
-                const { id, title, price, productImageUrl } = item;
-                return (
-                  <div
-                    key={index}
-                    className="bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden"
+  {/* Product Grid */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
+    {loading
+      ? Array.from({ length: 8 }).map((_, i) => (
+          <SkeletonLoader key={i} type="product-card" />
+        ))
+      : getAllProduct?.map((item, index) => {
+          const { id, title, price, productImageUrl } = item;
+          return (
+            <div
+              key={index}
+              className="bg-white rounded-lg md:rounded-xl shadow hover:shadow-xl transition overflow-hidden"
+            >
+              {/* Image */}
+              <div className="h-44 sm:h-48 md:h-56 flex items-center justify-center bg-white hover:scale-105 transition">
+                <img
+                  onClick={() => navigate(`/productinfo/${id}`)}
+                  src={productImageUrl}
+                  alt={title}
+                  className="h-36 sm:h-40 md:h-44 object-contain cursor-pointer"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-3 sm:p-4 bg-[#FAF9F6]">
+                {/* Tag */}
+                <h2 className="text-[10px] sm:text-xs text-gray-400 font-medium mb-0.5">
+                  E-bharat
+                </h2>
+
+                {/* Title */}
+                <h3 className="text-sm sm:text-base font-semibold text-gray-800 truncate">
+                  {title.substring(0, 35)}
+                </h3>
+
+                {/* Price */}
+                <p className="text-base sm:text-lg font-bold text-green-600 mt-1 sm:mt-2">
+                  ₹{price}
+                </p>
+
+                {/* Button */}
+                {cartItems?.some((p) => p.id === item.id) ? (
+                  <button
+                    onClick={() => deleteCart(item)}
+                    className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-500 transition"
                   >
-                    {/* Image */}
-                    <div className="h-56 flex items-center justify-center bg-white transform transition-all duration-300 ease-out hover:scale-105">
-                      <img
-                        onClick={() => navigate(`/productinfo/${id}`)}
-                        src={productImageUrl}
-                        alt={title}
-                        className="h-55 object-contain"
-                      />
-                    </div>
+                    Delete from Cart
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => addCart(item)}
+                    className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-800 transition"
+                  >
+                    Add to Cart
+                  </button>
+                )}
+              </div>
+            </div>
+          );
+        })}
+  </div>
+</div>
 
-                    {/* Content */}
-                    <div className="p-4 bg-[#FAF9F6]">
-                      {/* Tag */}
-                      <h2 className="text-sm text-gray-400 font-medium mb-1">
-                        E-bharat
-                      </h2>
-
-                      {/* Title */}
-                      <h3 className="text-base font-semibold text-gray-800 truncate">
-                        {title.substring(0, 35)}
-                      </h3>
-
-                      {/* Price */}
-                      <p className="text-lg font-bold text-green-600 mt-2">
-                        ₹{price}
-                      </p>
-
-                      {/* Button */}
-                      {cartItems?.some((p) => p.id === item.id) ? (
-                        <button
-                          onClick={() => deleteCart(item)}
-                          className="mt-4 w-full bg-pink-400 text-white py-2 rounded-lg hover:bg-pink-500 transition"
-                        >
-                          Delete to Cart
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => addCart(item)}
-                          className="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800 transition"
-                        >
-                          Add to Cart
-                        </button>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-        </div>
-      </div>
     </Layout>
   );
 };

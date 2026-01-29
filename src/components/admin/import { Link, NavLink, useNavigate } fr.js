@@ -26,43 +26,42 @@ const Navbar = () => {
         </li>
       </NavLink>
 
-      
-        <NavLink to="/allproduct" onClick={() => setOpen(false)}>
+      <NavLink to="/allproduct" onClick={() => setOpen(false)}>
         <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
           All Product
         </li>
-        </NavLink>
+      </NavLink>
 
       {!user && (
         <NavLink to="/signup" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
             Signup
-        </li>
-          </NavLink>
+          </li>
+        </NavLink>
       )}
 
       {!user && (
         <NavLink to="/login" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
             Login
-        </li>
-          </NavLink>
+          </li>
+        </NavLink>
       )}
 
       {user?.role === "user" && (
         <NavLink to="/user-dashboard" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
             {user.name}
-        </li>
-          </NavLink>
+          </li>
+        </NavLink>
       )}
 
       {user?.role === "admin" && (
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
-          <Link to="/admin-dashboard" onClick={() => setOpen(false)}>
+        <NavLink to="/admin-dashboard" onClick={() => setOpen(false)}>
+          <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
             {user.name}
-          </Link>
-        </li>
+          </li>
+        </NavLink>
       )}
 
       {user && (
@@ -74,16 +73,16 @@ const Navbar = () => {
         </li>
       )}
 
-        <NavLink to="/cart" onClick={() => setOpen(false)}>
-      <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+      <NavLink to="/cart" onClick={() => setOpen(false)}>
+        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
           Cart({cartCount.length})
-      </li>
-        </NavLink>
+        </li>
+      </NavLink>
     </ul>
   );
 
   return (
-    <nav className="bg-pink-600 fixed w-full top-0 z-50">
+    <nav className="bg-pink-600 fixed w-full top-0 z-50 relative">
       {/* ================= TOP BAR ================= */}
       <div className="flex items-center justify-between px-3 py-3 lg:px-6">
         {/* Logo */}
@@ -97,15 +96,14 @@ const Navbar = () => {
         <div className="hidden lg:block">{navlist}</div>
 
         {/* Desktop Search */}
-        {/* <div className="hidden lg:block lg:w-80">
+        <div className="hidden lg:block lg:w-80">
           <SearchBar />
-        </div> */}
+        </div>
 
         {/* Mobile Toggle */}
         <button
           className="lg:hidden text-white text-2xl shrink-0 cursor-pointer"
           onClick={() => setOpen(!open)}
-          onMouseEnter={() => setOpen(true)}
         >
           {open ? <FiX /> : <FiMenu />}
         </button>
@@ -115,9 +113,9 @@ const Navbar = () => {
       {open && (
         <div className="absolute top-full right-0 w-full bg-pink-700 shadow-lg lg:hidden">
           {/* 🔍 Mobile Search Bar (MENU KE ANDAR, TOP PE) */}
-          {/* <div className="px-3 py-3 border-b border-pink-400">
+          <div className="px-3 py-3 border-b border-pink-500">
             <SearchBar />
-          </div> */}
+          </div>
 
           {/* Menu Items */}
           <div className="py-2">{navlist}</div>

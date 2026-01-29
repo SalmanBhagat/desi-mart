@@ -4,7 +4,7 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyATHhuKzkBxO73LkWthU2jHdoKgfH-FAdY",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "desi-mart-554bb.firebaseapp.com",
   projectId: "desi-mart-554bb",
   storageBucket: "desi-mart-554bb.firebasestorage.app",
