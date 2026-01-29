@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import myContext from "./MyContext";
+import myContext from "./myContext";
 import {
   collection,
   deleteDoc,
