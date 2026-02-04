@@ -52,7 +52,8 @@ const AddProductPage = () => {
     category: "",
     description: "",
     quantity: 1,
-    time: Timestamp.now(),
+    time: serverTimestamp()
+,
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -66,7 +67,6 @@ const AddProductPage = () => {
     try {
       const productTemp = await getDoc(doc(fireDB, "products", id));
       const product = productTemp.data();
-      console.log(product);
       setProduct({
         title: product?.title,
         price: product?.price,
@@ -89,7 +89,6 @@ const AddProductPage = () => {
     setLoading(true);
     try {
       await setDoc(doc(fireDB, "products", id), product);
-      console.log("test");
       toast.success("Product updated successfully");
       getAllProductFunction();
       setLoading(false);

@@ -186,8 +186,16 @@ const HomePageProductCard = () => {
       if (filterPrice === "5000+") return obj.price > 5000;
 
       return true;
-    });
+    })
+    // // Safe Regex Search
+    // .filter((obj) => {
+    //   if (!searchKey) return true;
 
+    //   const safeKey = searchKey.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    //   const regex = new RegExp(safeKey, "i");
+
+    //   return regex.test(obj.title);
+    // });
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-10">
       <SearchBar />
@@ -209,51 +217,50 @@ const HomePageProductCard = () => {
           /* EMPTY STATE */
           <>
             {/* EMPTY STATE */}
-{/* EMPTY STATE */}
-<div className="col-span-full w-full flex justify-center">
-  <div className="w-full bg-pink-400/10 border border-pink-300 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center shadow-sm">
-    
-    {/* ICON */}
-<div className="mx-auto mb-4 sm:mb-6 flex h-12 w-12 sm:h-18 sm:w-18 items-center justify-center rounded-full bg-pink-500 text-white">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth={1.8}
-    className="h-6 w-6 sm:h-10 sm:w-10"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 3h13M7 13l1.5 3M10 21a1 1 0 100-2 1 1 0 000 2zm8 1a1 1 0 100-2 1 1 0 000 2"
-    />
-  </svg>
-</div>
+            {/* EMPTY STATE */}
+            <div className="col-span-full w-full flex justify-center">
+              <div className="w-full bg-pink-400/10 border border-pink-300 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center shadow-sm">
+                {/* ICON */}
+                <div className="mx-auto mb-4 sm:mb-6 flex h-12 w-12 sm:h-18 sm:w-18 items-center justify-center rounded-full bg-pink-500 text-white">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={1.8}
+                    className="h-6 w-6 sm:h-10 sm:w-10"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 3h13M7 13l1.5 3M10 21a1 1 0 100-2 1 1 0 000 2zm8 1a1 1 0 100-2 1 1 0 000 2"
+                    />
+                  </svg>
+                </div>
 
+                {/* TEXT */}
+                <h2 className="text-base sm:text-xl font-semibold text-pink-600">
+                  No products found
+                </h2>
 
-    {/* TEXT */}
-    <h2 className="text-base sm:text-xl font-semibold text-pink-600">
-      No products found
-    </h2>
+                <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                  There are no products available for the selected category or
+                  price range.
+                </p>
 
-    <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">
-      There are no products available for the selected category or price range.
-    </p>
-
-    {/* ACTION */}
-    <button
-      onClick={() => {
-        setFilterType("");
-        setFilterPrice("");
-        setSearchKey("");
-      }}
-      className="mt-4 sm:mt-6 inline-flex items-center justify-center rounded-lg bg-pink-500 px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white hover:bg-pink-600 transition cursor-pointer"
-    >
-      Clear Filters
-    </button>
-  </div>
-</div>
+                {/* ACTION */}
+                <button
+                  onClick={() => {
+                    setFilterType("");
+                    setFilterPrice("");
+                    setSearchKey("");
+                  }}
+                  className="mt-4 sm:mt-6 inline-flex items-center justify-center rounded-lg bg-pink-500 px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white hover:bg-pink-600 transition cursor-pointer"
+                >
+                  Clear Filters
+                </button>
+              </div>
+            </div>
           </>
         ) : (
           filteredProducts.map((item, index) => {

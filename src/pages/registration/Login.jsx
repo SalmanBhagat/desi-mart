@@ -4,7 +4,13 @@ import myContext from "../../context/myContext";
 import { signInWithEmailAndPassword } from "firebase/auth/web-extension";
 import { toast } from "react-toastify";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
-import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 const Login = () => {
   const context = useContext(myContext);
   const { loading, setLoading } = context;
@@ -18,14 +24,30 @@ const Login = () => {
     password: "",
   });
 
+  // regex rules (single source of truth)
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
   // user login btn function
   const userLoginFunction = async () => {
-    const { email, password } = userLogin;
+    // ----- validation ------ //
+    const email = userLogin.email.trim();
+    const password = userLogin.password.trim();
 
-    // validation
+    // 1 Empty check
     if (!email && !password) {
       return toast.error("All feild are required");
     }
+
+    // 2 Email regex
+    if (!emailRegex.test(email)) {
+      return toast.error("Enter a Email format is incorrect");
+    }
+
+    // 3 Password regex
+    // if (!passwordRegex.test(password)) {
+    //   return toast.error("Password is too weak");
+    // }
 
     setLoading(true);
 
@@ -34,41 +56,56 @@ const Login = () => {
         auth,
         userLogin.email,
         userLogin.password,
-      )
+      );
       try {
         const q = query(
           collection(fireDB, "user"),
           orderBy("time"),
-          where("uid", "==", users.user.uid)
-        )
+          where("uid", "==", users.user.uid),
+        );
         const data = onSnapshot(q, (QuerySnapshot) => {
           let user;
-          QuerySnapshot.forEach((doc) => user = doc.data());
+          QuerySnapshot.forEach((doc) => (user = doc.data()));
           localStorage.setItem("users", JSON.stringify(user));
           setUserLogin({
             email: "",
             password: "",
-          })
+          });
           setLoading(false);
 
           toast.success("Login successfully");
 
-
           if (user.role == "user") {
-            navigate("/")
-          }else{
+            navigate("/");
+          } else {
             navigate("/admin-dashboard");
           }
-        })
+        });
 
         return () => data;
-        
       } catch (error) {
-        toast.error(error)
+        toast.error(error);
         setLoading(false);
       }
     } catch (error) {
-      toast.error(error);
+      if (error.code == "auth/weak-password") {
+        console.log("Please Enter minimum 6 characters");
+        toast.error("Please Enter passwprd required minimum 6 characters");
+      }
+      if (error.code == "auth/invalid-email") {
+        console.log("Enter a Email format is incorrect");
+        toast.error("Enter a Email format is incorrect");
+      }
+      if (error.code == "auth/network-request-failed") {
+        console.log("Network issue releted");
+        toast.error(
+          "Network issue detected. Please try again after checking your internet.",
+        );
+      }
+      if (error.code === "auth/invalid-credential") {
+        toast.error("Invalid email or password. Please try again.");
+      }
+      console.log(error.code);
       setLoading(false);
     }
   };
@@ -127,18 +164,19 @@ const Login = () => {
 
           {/* Signup Button */}
           <button
-  type="button"
-  onClick={userLoginFunction}
-  disabled={loading}
-  className={`w-full mt-2 py-2 rounded-lg text-white font-semibold transition
-    ${loading 
-      ? "bg-pink-400 cursor-not-allowed" 
-      : "bg-pink-600 hover:bg-pink-700 cursor-pointer"}
+            type="button"
+            onClick={userLoginFunction}
+            disabled={loading}
+            className={`w-full mt-2 py-2 rounded-lg text-white font-semibold transition
+    ${
+      loading
+        ? "bg-pink-400 cursor-not-allowed"
+        : "bg-pink-600 hover:bg-pink-700 cursor-pointer"
+    }
   `}
->
-  {loading ? "Logging in..." : "Login"}
-</button>
-
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
         </form>
 
         {/* Login Redirect */}

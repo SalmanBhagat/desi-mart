@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import myContext from "../../context/myContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, Timestamp } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 
 // Category List
@@ -51,7 +51,7 @@ const AddProductPage = () => {
     category: "",
     description: "",
     quantity: 1,
-    time: Timestamp.now().toMillis(),
+    time: serverTimestamp(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -74,7 +74,11 @@ const AddProductPage = () => {
     try {
       // const productRef = collection(fireDB, "products");
       // await addDoc(productRef, product);
-      await addDoc(collection(fireDB, "products"), product);
+      await addDoc(collection(fireDB, "products"), {
+  ...product,
+  time: serverTimestamp(),
+});
+
       toast.success("Add Product Successfully");
       navigate("/admin-dashboard");
       setLoading(false);

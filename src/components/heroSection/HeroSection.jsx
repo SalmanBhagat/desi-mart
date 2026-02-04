@@ -45,7 +45,7 @@ const HeroSection = () => {
         src={images[index]}
         onMouseEnter={() => setIsPause(true)}
         onMouseLeave={() => setIsPause(false)}
-        className={`object-cover sm:object-contain
+        className={`object-contain sm:object-contain
     transition-opacity duration-700 ease-in-out
     ${isFade ? "opacity-0" : "opacity-100"}
   `}
@@ -60,8 +60,7 @@ const HeroSection = () => {
     left-2 sm:left-4 lg:left-8
     bg-white/80 hover:bg-white
     p-1.5 sm:p-2
-    rounded-full shadow
-
+    rounded-full shadow cursor-pointer
     block
     lg:hidden
     lg:group-hover:block
@@ -78,8 +77,7 @@ const HeroSection = () => {
     right-2 sm:right-4 lg:right-8
     bg-white/80 hover:bg-white
     p-1.5 sm:p-2
-    rounded-full shadow
-
+    rounded-full shadow cursor-pointer
     block
     lg:hidden
     lg:group-hover:block

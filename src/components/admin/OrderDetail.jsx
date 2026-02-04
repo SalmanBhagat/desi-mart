@@ -14,8 +14,6 @@ const OrderDetail = () => {
   ? getAllOrder
   : getAllOrder.slice(0, 8);
 
-  console.log(visibleOrders);
-
   return (
     <div className="mt-6">
       {/* Main Card */}

@@ -3,12 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
 import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
 const Signup = () => {
   const context = useContext(myContext);
-  const { loading, setLoading } = context;
+  const { setLoading } = context;
 
   // Navigate
   const navigate = useNavigate();
@@ -21,31 +22,53 @@ const Signup = () => {
     role: "user",
   });
 
+  // regex rules (single source of truth)
+  const nameRegex = /^[A-Za-z\s]+$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
   // User Signup function
   const userSignupFunction = async () => {
     // validation
-    const { name, email, password } = userSignup;
+    const name = userSignup.name.trim();
+    const email = userSignup.email.trim();
+    const password = userSignup.password.trim();
 
+    // 1️ Empty check
     if (!name && !email && !password) {
       return toast.error("all feild are required");
     }
+
+    // 2️ Name regex
+    if (!nameRegex.test(name)) {
+      return toast.error("Name should contain only letters and spaces");
+    }
+
+    // 3️ Email regex
+    if (!emailRegex.test(email)) {
+      return toast.error("Enter a Email format is incorrect");
+    }
+
+    // 4️ Password regex
+    // if (!passwordRegex.test(password)) {
+    //   return toast.error("Password is too weak");
+    // }
 
     setLoading(true);
 
     try {
       const users = await createUserWithEmailAndPassword(
-      auth,
-      userSignup.email,
-      userSignup.password,
-    );
-
+        auth,
+        userSignup.email,
+        userSignup.password,
+      );
       // create user object
       const user = {
         name: userSignup.name,
         email: userSignup.email,
         uid: users.user.uid,
         role: userSignup.role,
-        time: Timestamp.now().toMillis(),
+        time: serverTimestamp(),
         date: new Date().toLocaleString("en-Us", {
           month: "short",
           day: "2-digit",
@@ -53,11 +76,9 @@ const Signup = () => {
         }),
       };
 
-      console.log(user);
 
       // Create user refrence
       const userRefrence = collection(fireDB, "user");
-      console.log(userRefrence);
 
       // add user detail
       addDoc(userRefrence, user);
@@ -72,9 +93,20 @@ const Signup = () => {
 
       setLoading(false);
       navigate("/login");
-
     } catch (error) {
-      toast.error(error);
+      if (error.code == "auth/weak-password") {
+        console.log("Please Enter minimum 6 characters");
+        toast.error("Please Enter passwprd required minimum 6 characters")
+      }
+      if (error.code == "auth/invalid-email") {
+        console.log("Enter a Email format is incorrect");
+        toast.error("Enter a Email format is incorrect");
+      }
+      if (error.code == "auth/network-request-failed") {
+        console.log("Network issue releted");
+        toast.error("Network issue detected. Please try again after checking your internet.");
+      }
+      console.log(error.code);
       setLoading(false);
     }
   };

@@ -18,7 +18,7 @@ const SearchBar = () => {
     <>
       {/* ===== Filter Section ===== */}
 <div className="mb-8 sm:mb-10">
-  <div className="bg-[#F8F8F8] flex flex-col gap-4 sm:gap-6 border border-gray-200 rounded-xl shadow-sm p-4 sm:p-5">
+  <div className="bg-[#F8F8F8] flex flex-col gap-3 sm:gap-6 border border-gray-200 rounded-xl shadow-sm p-4 sm:p-5">
 
     {/* 🔍 Search */}
     <div className="relative w-full">
@@ -47,7 +47,7 @@ const SearchBar = () => {
 
       {/* Category */}
       <div className="w-full min-[400px]:flex-1 min-[640px]:flex-none min-[640px]:w-50">
-        <label className="block text-[11px] sm:text-xs font-semibold text-gray-500 mb-0.5 sm:mb-1">
+        <label className="hidden min-[400px]:block text-[11px] sm:text-xs font-semibold text-gray-500 mb-0.5 sm:mb-1">
           Category
         </label>
         <select
@@ -71,7 +71,7 @@ const SearchBar = () => {
 
       {/* Price */}
       <div className="w-full min-[400px]:flex-1 min-[640px]:flex-none min-[640px]:w-50">
-        <label className="block text-[11px] sm:text-xs font-semibold text-gray-500 mb-0.5 sm:mb-1">
+        <label className="hidden min-[400px]:block text-[11px] sm:text-xs font-semibold text-gray-500 mb-0.5 sm:mb-1">
           Price Range
         </label>
         <select

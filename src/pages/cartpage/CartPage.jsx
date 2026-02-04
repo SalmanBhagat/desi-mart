@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
 // import toast from "react-toastify"
-import { addDoc, collection, Timestamp } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp, Timestamp } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 
 const CartPage = () => {
@@ -64,7 +64,7 @@ const CartPage = () => {
     address: "",
     pincode: "",
     mobileNumber: "",
-    time: Timestamp.now(),
+    time: serverTimestamp(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -87,7 +87,8 @@ const CartPage = () => {
       email: user.email,
       userId: user.uid,
       status: "confirmed",
-      time: Timestamp.now(),
+      time: serverTimestamp()
+,
       date: new Date().toLocaleString("en-US", {
         month: "short",
         day: "2-digit",

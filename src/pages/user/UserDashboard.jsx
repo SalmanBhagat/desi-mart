@@ -12,16 +12,8 @@ const UserDashboard = () => {
   const context = useContext(myContext);
   const { loading, getAllOrder } = context;
 
-  console.log(getAllOrder);
-  console.log(user);
 
-  console.log("USER UID 👉", user?.uid);
-  console.log(
-    "FILTER RESULT 👉",
-    getAllOrder.filter((o) => o.userId === user?.uid),
-  );
-
-  console.log(getAllOrder);
+  
 
   const userOrders = getAllOrder?.filter((obj) => obj.userId === user?.uid);
 

@@ -17,7 +17,7 @@ const CategoryPage = () => {
   const context = useContext(myContext);
   const { getAllProduct, loading } = context;
 
-  console.log(getAllProduct);
+
 
   const filterProduct = getAllProduct?.filter((obj) =>
     obj.category.includes(categoryname),
