@@ -1,4 +1,4 @@
-import { FaBoxOpen, FaShoppingCart, FaUsers } from "react-icons/fa";
+import { FaBoxOpen, FaUsers } from "react-icons/fa";
 import { GoListOrdered } from "react-icons/go";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import ProductDetail from "../../components/admin/ProductDetail";

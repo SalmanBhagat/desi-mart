@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
 // import toast from "react-toastify"
-import { addDoc, collection, serverTimestamp, Timestamp } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 
 const CartPage = () => {
@@ -152,7 +152,7 @@ const CartPage = () => {
                         {/* <span className="line-through text-gray-400 text-sm"> ₹{item.originalPrice.toLocaleString()} </span> <span className="text-green-600 text-sm"> {discount} </span> */}
                       </div>
                       {/* Actions */}
-                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 sm:gap-6 mt-2 md:mt-4">
+                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 lg:gap-6 mt-2 md:mt-4">
                         {/* Quantity */}
                         <div className="flex items-center border rounded-md">
                           <button
