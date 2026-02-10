@@ -202,7 +202,7 @@ const HomePageProductCard = () => {
 
       {/* Section Title */}
       <div className="mb-6 md:mb-8 text-left">
-        <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-gray-800">
+        <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-g-800">
           <span className="border-b-3 border-pink-600">Our La</span>test
           Collection
         </h1>
@@ -221,7 +221,7 @@ const HomePageProductCard = () => {
             <div className="col-span-full w-full flex justify-center">
               <div className="w-full bg-p-400/10 border border-pink-300 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center shadow-sm">
                 {/* ICON */}
-                <div className="mx-auto mb-4 sm:mb-6 flex h-12 w-12 sm:h-18 sm:w-18 items-center justify-center rounded-full bg-pink-500 text-white">
+                <div className="mx-auto mb-4 sm:mb-6 flex h-12 w-12 sm:h-18 sm:w-18 items-center justify-center rounded-full bg-p-500 text-white">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -239,11 +239,11 @@ const HomePageProductCard = () => {
                 </div>
 
                 {/* TEXT */}
-                <h2 className="text-base sm:text-xl font-semibold text-pink-600">
+                <h2 className="text-base sm:text-xl font-semibold text-p-600">
                   No products found
                 </h2>
 
-                <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600 leading-relaxed">
+                <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-g-600 leading-relaxed">
                   There are no products available for the selected category or
                   price range.
                 </p>
@@ -255,7 +255,7 @@ const HomePageProductCard = () => {
                     setFilterPrice("");
                     setSearchKey("");
                   }}
-                  className="mt-4 sm:mt-6 inline-flex items-center justify-center rounded-lg bg-p-500 px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white hover:bg-pink-600 transition cursor-pointer"
+                  className="mt-4 sm:mt-6 inline-flex items-center justify-center rounded-lg bg-p-500 px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white hover:bg-p-600 transition cursor-pointer"
                 >
                   Clear Filters
                 </button>
@@ -283,12 +283,12 @@ const HomePageProductCard = () => {
                 {/* Content */}
                 <div className="p-3 sm:p-4 bg-[#FAF9F6]">
                   {/* Tag */}
-                  <h2 className="text-[10px] sm:text-xs text-gray-400 font-medium mb-0.5">
+                  <h2 className="text-[10px] sm:text-xs text-g-400 font-medium mb-0.5">
                     E-bharat
                   </h2>
 
                   {/* Title */}
-                  <h3 className="text-sm sm:text-base font-semibold text-gray-800 truncate">
+                  <h3 className="text-sm sm:text-base font-semibold text-g-800 truncate">
                     {title.substring(0, 35)}
                   </h3>
 
@@ -301,14 +301,14 @@ const HomePageProductCard = () => {
                   {cartItems?.some((p) => p.id === item.id) ? (
                     <button
                       onClick={() => deleteCart(item)}
-                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-500 transition cursor-pointer"
+                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-p-500 transition cursor-pointer"
                     >
                       Delete from Cart
                     </button>
                   ) : (
                     <button
                       onClick={() => addCart(item)}
-                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-800 transition cursor-pointer"
+                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-p-800 transition cursor-pointer"
                     >
                       Add to Cart
                     </button>

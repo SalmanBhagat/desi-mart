@@ -10,7 +10,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
 
   return (
     <div>
-      <button onClick={() => setOpen(true)} className="mt-6 w-full bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-lg text-lg cursor-pointer">
+      <button onClick={() => setOpen(true)} className="mt-6 w-full bg-p-600 hover:bg-p-700 text-white py-2 rounded-lg text-lg cursor-pointer">
         Buy now
       </button>
       {/* Popup */}
@@ -21,11 +21,11 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
             {/* Popup Card */}
             <div className="w-full max-w-lg mx-4 rounded-2xl bg-white shadow-2xl overflow-hidden">
               {/* Header */}
-              <div className="bg-pink-400 px-4 py-3">
+              <div className="bg-p-400 px-4 py-3">
                 <h2 className="text-lg font-semibold text-white">
                   Delivery Details
                 </h2>
-                <p className="text-sm text-pink-100">
+                <p className="text-sm text-p-100">
                   Please enter your shipping information
                 </p>
               </div>
@@ -34,7 +34,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
               <div className="p-4 space-y-3">
                 {/* Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-g-700">
                     Full Name
                   </label>
                   <input
@@ -53,7 +53,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
 
                 {/* Address */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-g-700">
                     Address
                   </label>
                   <textarea
@@ -74,7 +74,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                 {/* Pincode + Mobile */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-g-700">
                       Pincode
                     </label>
                     <input
@@ -92,7 +92,7 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">
+                    <label className="block text-sm font-medium text-g-700">
                       Mobile Number
                     </label>
                     <input
@@ -112,15 +112,15 @@ const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
               </div>
 
               {/* Footer */}
-              <div className="flex bg-gray-50 px-4 py-3">
+              <div className="flex bg-g-50 px-4 py-3">
                 <div className="flex w-full gap-2">
                   <button onClick={() => {
                     buyNowFunction();
                     handleOpen();
-                  }} className="w-2/3 rounded-lg bg-pink-500 px-6 py-2 text-sm font-medium text-white hover:bg-pink-600 cursor-pointer">
+                  }} className="w-2/3 rounded-lg bg-p-500 px-6 py-2 text-sm font-medium text-white hover:bg-p-600 cursor-pointer">
                     Place Order
                   </button>
-                  <button onClick={() => setOpen(false)} className="w-1/3 rounded-lg border px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+                  <button onClick={() => setOpen(false)} className="w-1/3 rounded-lg border px-4 py-2 text-sm text-g-700 hover:bg-g-100 cursor-pointer">
                     Cancel
                   </button>
                 </div>

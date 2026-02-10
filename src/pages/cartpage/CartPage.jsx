@@ -119,7 +119,7 @@ const CartPage = () => {
         {cartItems?.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT CART ITEMS */}
-            <div className="lg:col-span-2 space-y-6 bg-gray-50 rounded-xl p-4">
+            <div className="lg:col-span-2 space-y-6 bg-g-50 rounded-xl p-4">
               {cartItems.map((item) => {
                 const {
                   id,
@@ -138,18 +138,18 @@ const CartPage = () => {
                     <img
                       src={productImageUrl}
                       alt={title}
-                      className="w-33 h-33 sm:w-33 sm:h-33 object-contain bg-gray-50 rounded-lg"
+                      className="w-33 h-33 sm:w-33 sm:h-33 object-contain bg-g-50 rounded-lg"
                     />
                     {/* Info */}
                     <div className="flex-1 min-w-0">
                       <h2 className="font-semibold text-lg truncate max-w-full">{title}</h2>
-                      <p className="text-sm text-gray-500 mt-0 md:mt-1"> {category} </p>
+                      <p className="text-sm text-g-500 mt-0 md:mt-1"> {category} </p>
                       {/* Price */}
                       <div className="flex items-center gap-3 mt-1 md:mt-2">
                         <span className="font-semibold text-lg text-green-600">
                           ₹{price.toLocaleString()}
                         </span>
-                        {/* <span className="line-through text-gray-400 text-sm"> ₹{item.originalPrice.toLocaleString()} </span> <span className="text-green-600 text-sm"> {discount} </span> */}
+                        {/* <span className="line-through text-g-400 text-sm"> ₹{item.originalPrice.toLocaleString()} </span> <span className="text-green-600 text-sm"> {discount} </span> */}
                       </div>
                       {/* Actions */}
                       <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 lg:gap-6 mt-2 md:mt-4">
@@ -185,7 +185,7 @@ const CartPage = () => {
             </div>
 
             {/* RIGHT PRICE DETAILS */}
-            <div className="bg-gray-50 rounded-xl p-6 h-fit">
+            <div className="bg-g-50 rounded-xl p-6 h-fit">
               <h2 className="font-semibold text-lg mb-4">Price Details</h2>
 
               <div className="space-y-3 text-sm">
@@ -225,27 +225,27 @@ const CartPage = () => {
         ) : (
           // ✅ EMPTY CART STATE (FULL WIDTH)
           <div
-            className="flex flex-col items-center justify-center py-6 px-4 sm:py-8 sm:px-6 bg-pink-400/10 rounded-xl border border-pink-200 text-center"
+            className="flex flex-col items-center justify-center py-6 px-4 sm:py-8 sm:px-6 bg-p-400/10 rounded-xl border border-pink-200 text-center"
           >
             {/* Icon */}
-            <div className="bg-pink-400 text-white rounded-full p-4 mb-3 sm:mb-4">
+            <div className="bg-p-400 text-white rounded-full p-4 mb-3 sm:mb-4">
               <BsCartX size={28} className="sm:size-8 md:size-9" />
             </div>
 
             {/* Heading */}
-            <h2 className="text-xl sm:text-2xl font-semibold text-pink-600">
+            <h2 className="text-xl sm:text-2xl font-semibold text-p-600">
               Your cart is empty
             </h2>
 
             {/* Description */}
-            <p className="text-sm sm:text-base text-gray-600 mt-2 max-w-xs sm:max-w-sm">
+            <p className="text-sm sm:text-base text-g-600 mt-2 max-w-xs sm:max-w-sm">
               Looks like you haven’t added anything to your cart yet. Start
               shopping to see products here.
             </p>
 
             {/* Action Button */}
             <button
-              className="mt-4 sm:mt-6 bg-pink-600 hover:bg-pink-700 text-white text-sm sm:text-base px-4 py-1.5 sm:px-6 sm:py-2 rounded-lg transition cursor-pointer"
+              className="mt-4 sm:mt-6 bg-p-600 hover:bg-p-700 text-white text-sm sm:text-base px-4 py-1.5 sm:px-6 sm:py-2 rounded-lg transition cursor-pointer"
               onClick={() => navigate("/allproduct")}
             >
               Continue Shopping

@@ -76,7 +76,7 @@ const ProductInfo = () => {
         <div className="px-5 sm:px-7 md:px-10 py-6 md:py-7 flex flex-col gap-3 sm:gap-4 md:gap-5">
           
           {/* TITLE */}
-          <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-gray-900 leading-snug">
+          <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-g-900 leading-snug">
             {product?.title}
           </h1>
 
@@ -89,7 +89,7 @@ const ProductInfo = () => {
               <FaStarHalfStroke size={16} />
               <FaRegStar size={16} />
             </div>
-            <span className="text-xs sm:text-sm text-gray-500">
+            <span className="text-xs sm:text-sm text-g-500">
               (4.5 rating)
             </span>
           </div>
@@ -102,7 +102,7 @@ const ProductInfo = () => {
           </div>
 
           {/* DESCRIPTION */}
-          <p className="text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-g-600 leading-relaxed">
             {product?.description}
           </p>
 
@@ -111,8 +111,8 @@ const ProductInfo = () => {
             <button
               onClick={() => deleteCart(product)}
               className="mt-3 sm:mt-4 w-full text-sm sm:text-base 
-                         bg-pink-400 text-white py-1.5 sm:py-2 
-                         rounded-md sm:rounded-lg hover:bg-pink-500 transition cursor-pointer"
+                         bg-p-400 text-white py-1.5 sm:py-2 
+                         rounded-md sm:rounded-lg hover:bg-p-500 transition cursor-pointer"
             >
               Delete from Cart
             </button>
@@ -120,8 +120,8 @@ const ProductInfo = () => {
             <button
               onClick={() => addCart(product)}
               className="mt-3 sm:mt-4 w-full text-sm sm:text-base 
-                         bg-pink-600 text-white py-1.5 sm:py-2 
-                         rounded-md sm:rounded-lg hover:bg-pink-800 transition cursor-pointer"
+                         bg-p-600 text-white py-1.5 sm:py-2 
+                         rounded-md sm:rounded-lg hover:bg-p-800 transition cursor-pointer"
             >
               Add to Cart
             </button>

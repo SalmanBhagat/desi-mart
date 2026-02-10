@@ -17,12 +17,12 @@ const OrderDetail = () => {
   return (
     <div className="mt-6">
       {/* Main Card */}
-      <div className="rounded-xl border border-pink-200 overflow-hidden bg-pink-50">
+      <div className="rounded-xl border border-pink-200 overflow-hidden bg-p-50">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-pink-400">
+        <div className="flex items-center justify-between px-6 py-4 bg-p-400">
           <h2 className="text-xl font-semibold text-white">Order Details</h2>
 
-          <button onClick={() => setShowAll(!showAll)} className="bg-white text-pink-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-pink-50 transition cursor-pointer">
+          <button onClick={() => setShowAll(!showAll)} className="bg-white text-p-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-p-50 transition cursor-pointer">
              {showAll ? "Show Less" : "View All Orders"}
           </button>
         </div>
@@ -30,7 +30,7 @@ const OrderDetail = () => {
         {/* Table */}
         <div className="w-full overflow-x-auto scrollbar-pink border border-pink-200 bg-white shadow">
           {!loading && getAllOrder.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-10 m-10 text-center bg-pink-400 text-white rounded-2xl shadow-lg">
+          <div className="flex flex-col items-center justify-center py-10 m-10 text-center bg-p-400 text-white rounded-2xl shadow-lg">
                       <div className="">
                         {/* Icon */}
                         <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/20">
@@ -56,20 +56,20 @@ const OrderDetail = () => {
                         </h2>
 
                         {/* Description */}
-                        <p className="mt-2 text-sm text-pink-100">
+                        <p className="mt-2 text-sm text-p-100">
                           Looks like there are no orders available right now. 
                           Once a customer places an order, <br /> it will appear here.
                         </p>
 
                         {/* Action Button (optional) */}
-                        <button onClick={() => getAllOrderFunctiom()} className="mt-6 rounded-lg bg-white px-5 py-2 text-sm font-medium text-pink-500 hover:bg-pink-50 transition cursor-pointer">
+                        <button onClick={() => getAllOrderFunctiom()} className="mt-6 rounded-lg bg-white px-5 py-2 text-sm font-medium text-p-500 hover:bg-p-50 transition cursor-pointer">
                           Refresh Orders
                         </button>
                       </div>
                     </div>
           ): (
             <table className="min-w-450 text-sm text-left">
-            <thead className="bg-pink-100 text-pink-700">
+            <thead className="bg-p-100 text-p-700">
               <tr>
                 <th className="px-4 py-3 font-semibold">No</th>
                 <th className="px-4 py-3 font-semibold">Order ID</th>
@@ -113,12 +113,12 @@ const OrderDetail = () => {
                       addressInfo;
 
                     return (
-                      <tr key={id} className="hover:bg-pink-50 transition">
+                      <tr key={id} className="hover:bg-p-50 transition">
                         {/* 1. No */}
                         <td className="px-4 py-3">{rowNo++}</td>
 
                         {/* 2. Order ID */}
-                        <td className="px-4 py-3 font-medium text-gray-800">
+                        <td className="px-4 py-3 font-medium text-g-800">
                           {orderId?.slice(0, 8)}
                         </td>
 
@@ -144,7 +144,7 @@ const OrderDetail = () => {
                         <td className="px-4 py-3 text-center">{quantity}</td>
 
                         {/* 8. Total Price */}
-                        <td className="px-4 py-3 font-semibold text-pink-600">
+                        <td className="px-4 py-3 font-semibold text-p-600">
                           ₹{price * quantity}
                         </td>
 
@@ -176,7 +176,7 @@ const OrderDetail = () => {
                         {/* 16. Delete */}
                         <td className="px-4 py-3 text-center">
                           <button
-                            className="rounded-md border border-pink-400 text-pink-400 bg-transparent hover:bg-pink-400 hover:text-white px-3 py-1 text-sm  cursor-pointer"
+                            className="rounded-md border border-pink-400 text-p-400 bg-transparent hover:bg-p-400 hover:text-white px-3 py-1 text-sm  cursor-pointer"
                             onClick={() => orderDelete(orderId)}
                           >
                             Delete

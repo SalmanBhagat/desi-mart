@@ -64,11 +64,11 @@ const getPerPage = () => {
       {/* Card */}
       <div className="rounded-xl border border-pink-200 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-pink-400">
+        <div className="flex items-center justify-between px-6 py-4 bg-p-400">
           <h2 className="text-xl font-semibold text-white">Product Details</h2>
           <Link
             to={"/addproduct"}
-            className="bg-white text-pink-500 font-medium px-4 py-2 rounded-lg shadow hover:shadow-lg hover:scale-[101%] transition"
+            className="bg-white text-p-500 font-medium px-4 py-2 rounded-lg shadow hover:shadow-lg hover:scale-[101%] transition"
           >
             + Add Product
           </Link>
@@ -77,7 +77,7 @@ const getPerPage = () => {
         <div className="relative overflow-x-auto bg-white rounded-xl shadow">
           <table className="w-full text-sm text-left">
             {/* Table Head */}
-            <thead className="bg-pink-100 text-pink-700">
+            <thead className="bg-p-100 text-p-700">
               <tr>
                 <th className="px-6 py-3 font-semibold">S.No</th>
                 <th className="px-6 py-3 font-semibold">Image</th>
@@ -101,13 +101,13 @@ const getPerPage = () => {
                 <tr>
                   <td colSpan={8} className="py-4 text-center">
                     <div className="flex flex-col items-center justify-center gap-2">
-                      <div className="w-14 h-14 flex items-center justify-center rounded-full bg-pink-400 text-white">
+                      <div className="w-14 h-14 flex items-center justify-center rounded-full bg-p-400 text-white">
                         <FiBox size={26} />
                       </div>
-                      <p className="text-gray-700 text-lg font-semibold">
+                      <p className="text-g-700 text-lg font-semibold">
                         No products found
                       </p>
-                      <p className="text-md text-gray-500">
+                      <p className="text-md text-g-500">
                         Add your first product to see it here
                       </p>
                     </div>
@@ -116,7 +116,7 @@ const getPerPage = () => {
               ) : (
                 // Products list Show for UI
                 paginatedData.map((item, index) => (
-                  <tr key={index} className="hover:bg-pink-50 transition">
+                  <tr key={index} className="hover:bg-p-50 transition">
                     {/* S.No */}
                     <td className="px-6 py-4">
                       {(currentPage - 1) * perPage + index + 1}
@@ -126,7 +126,7 @@ const getPerPage = () => {
                       <img
                         src={item.productImageUrl}
                         alt="product"
-                        className="w-16 h-16 object-contain bg-gray-100 rounded-lg"
+                        className="w-16 h-16 object-contain bg-g-100 rounded-lg"
                       />
                     </td>
                     {/* Title */}
@@ -135,16 +135,16 @@ const getPerPage = () => {
                     </td>
                     {/* Category */}
                     <td className="px-6 py-4">
-                      <span className="px-3 py-1 text-xs rounded-full font-bold bg-pink-100 text-pink-600 capitalize">
+                      <span className="px-3 py-1 text-xs rounded-full font-bold bg-p-100 text-p-600 capitalize">
                         {item.category}
                       </span>
                     </td>
                     {/* Price */}
-                    <td className="px-7 py-4 font-semibold text-gray-700 tabular-nums whitespace-nowrap">
+                    <td className="px-7 py-4 font-semibold text-g-700 tabular-nums whitespace-nowrap">
                       ₹ {item.price}
                     </td>
                     {/* Date */}
-                    <td className="px-6 py-4 text-gray-500 text-xs whitespace-nowrap">
+                    <td className="px-6 py-4 text-g-500 text-xs whitespace-nowrap">
                       {item.date}
                     </td>
                     {/* Action */}
@@ -172,7 +172,7 @@ const getPerPage = () => {
             </tbody>
           </table>
           {/* Pagination Bar */}
-          <div className="border-t border-pink-100 bg-pink-50/40 px-4 py-4">
+          <div className="border-t border-pink-100 bg-p-50/40 px-4 py-4">
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}

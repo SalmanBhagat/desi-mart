@@ -107,10 +107,10 @@ const AddProductPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-pink-50">
+    <div className="min-h-screen flex items-center justify-center bg-p-50">
       <div className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-6">
         {/* Main Title */}
-        <h2 className="text-2xl font-bold text-center text-pink-600 mb-7">
+        <h2 className="text-2xl font-bold text-center text-p-600 mb-7">
           Update Product
         </h2>
 
@@ -176,7 +176,7 @@ const AddProductPage = () => {
               });
             }}
             className="w-full px-4 py-2 border border-gray-200 rounded-lg outline-none
-            focus:ring-2 focus:ring-pink-500 focus:border-transparent text-gray-500"
+            focus:ring-2 focus:ring-pink-500 focus:border-transparent text-g-500"
           >
             <option disabled>Select Product Type</option>
             {categoryList?.map((value, index) => {
@@ -215,8 +215,8 @@ const AddProductPage = () => {
             type="button"
             onClick={updateProductFunction}
             disabled={loading}
-            className={`w-full flex items-center justify-center gap-2 bg-pink-600 text-white py-2 rounded-lg font-semibold
-  hover:bg-pink-700 transition cursor-pointer
+            className={`w-full flex items-center justify-center gap-2 bg-p-600 text-white py-2 rounded-lg font-semibold
+  hover:bg-p-700 transition cursor-pointer
   ${loading && "opacity-70 cursor-not-allowed"}`}
           >
             {loading ? (

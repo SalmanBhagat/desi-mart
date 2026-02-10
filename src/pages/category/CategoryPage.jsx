@@ -74,7 +74,7 @@ const CategoryPage = () => {
 
                     {/* Content */}
                     <div className="p-4 bg-[#FAF9F6]">
-                      <h2 className="text-sm text-gray-400 mb-1">E-bharat</h2>
+                      <h2 className="text-sm text-g-400 mb-1">E-bharat</h2>
 
                       <h3 className="font-semibold truncate">
                         {title.substring(0, 35)}
@@ -88,14 +88,14 @@ const CategoryPage = () => {
                       {cartItems?.some((p) => p.id === item.id) ? (
                         <button
                           onClick={() => deleteCart(item)}
-                          className="mt-4 w-full bg-pink-400 text-white py-2 rounded-lg hover:bg-pink-500 transition cursor-pointer"
+                          className="mt-4 w-full bg-p-400 text-white py-2 rounded-lg hover:bg-p-500 transition cursor-pointer"
                         >
                           Delete to Cart
                         </button>
                       ) : (
                         <button
                           onClick={() => addCart(item)}
-                          className="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800 transition cursor-pointer"
+                          className="mt-4 w-full bg-p-600 text-white py-2 rounded-lg hover:bg-p-800 transition cursor-pointer"
                         >
                           Add to Cart
                         </button>

@@ -19,7 +19,7 @@ const UserDashboard = () => {
 
   return (
     <Layout>
-      <div className="min-h-[calc(100vh-68px)] bg-pink-50 p-4 md:p-8">
+      <div className="min-h-[calc(100vh-68px)] bg-p-50 p-4 md:p-8">
         <div className="max-w-5xl mx-auto space-y-6 mt-14.25">
           {/* ===== User Info ===== */}
           <div className="bg-white rounded-xl shadow p-6 flex items-center gap-4">
@@ -30,14 +30,14 @@ const UserDashboard = () => {
             />
 
             <div>
-              <h2 className="text-xl font-semibold text-gray-800">
+              <h2 className="text-xl font-semibold text-g-800">
                 {user?.name}
               </h2>
-              <p className="text-sm text-gray-500">{user?.email}</p>
+              <p className="text-sm text-g-500">{user?.email}</p>
             </div>
           </div>
 
-          <div className="bg-pink-400 p-5 rounded-xl shadow space-y-6">
+          <div className="bg-p-400 p-5 rounded-xl shadow space-y-6">
             {/* ===== Order Details Box ===== */}
             {getAllOrder.length > 0 ? (
               userOrders.length === 0 ? (
@@ -47,27 +47,27 @@ const UserDashboard = () => {
 >
   {/* Icon */}
   <div
-    className="mb-4 sm:mb-5 flex items-center justify-center rounded-full bg-pink-100
+    className="mb-4 sm:mb-5 flex items-center justify-center rounded-full bg-p-100
     h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20"
   >
-    <BsCartX className="text-pink-500 text-2xl sm:text-3xl md:text-4xl" />
+    <BsCartX className="text-p-500 text-2xl sm:text-3xl md:text-4xl" />
   </div>
 
   {/* Text */}
-  <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
+  <h2 className="text-lg sm:text-xl font-semibold text-g-800">
     No Orders Yet
   </h2>
 
-  <p className="mt-1.5 sm:mt-2 max-w-md text-xs sm:text-sm text-gray-600">
+  <p className="mt-1.5 sm:mt-2 max-w-md text-xs sm:text-sm text-g-600">
     You haven’t placed any orders yet. Start shopping to see your orders here.
   </p>
 
   {/* CTA */}
   <button
     onClick={() => navigate("/allproduct")}
-    className="mt-4 sm:mt-6 rounded-lg bg-pink-500 
+    className="mt-4 sm:mt-6 rounded-lg bg-p-500 
     px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm 
-    font-medium text-white transition hover:bg-pink-600 cursor-pointer"
+    font-medium text-white transition hover:bg-p-600 cursor-pointer"
   >
     Start Shopping
   </button>
@@ -84,21 +84,21 @@ const UserDashboard = () => {
                       {/* ===== Order Header (ONLY ONCE) ===== */}
                       <div className="flex flex-wrap gap-4 justify-between">
                         <div>
-                          <p className="text-xs text-gray-500">Order ID</p>
-                          <p className="font-medium text-gray-800">
+                          <p className="text-xs text-g-500">Order ID</p>
+                          <p className="font-medium text-g-800">
                             {order.id}
                           </p>
                         </div>
 
                         <div>
-                          <p className="text-xs text-gray-500">Order Date</p>
-                          <p className="font-medium text-gray-800">
+                          <p className="text-xs text-g-500">Order Date</p>
+                          <p className="font-medium text-g-800">
                             {order.date}
                           </p>
                         </div>
 
                         <div>
-                          <p className="text-xs text-gray-500">Status</p>
+                          <p className="text-xs text-g-500">Status</p>
                           <span className="inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700 capitalize">
                             {status}
                           </span>
@@ -131,18 +131,18 @@ const UserDashboard = () => {
                               />
 
                               <div className="flex-1">
-                                <h3 className="text-lg font-semibold text-gray-800">
+                                <h3 className="text-lg font-semibold text-g-800">
                                   {title}
                                 </h3>
 
-                                <p className="mt-2 text-sm text-gray-600">
+                                <p className="mt-2 text-sm text-g-600">
                                   Category:{" "}
                                   <span className="font-medium">
                                     {category}
                                   </span>
                                 </p>
 
-                                <p className="mt-2 text-sm text-gray-600">
+                                <p className="mt-2 text-sm text-g-600">
                                   Quantity:{" "}
                                   <span className="font-medium">
                                     {quantity}
@@ -151,8 +151,8 @@ const UserDashboard = () => {
                               </div>
 
                               <div className="text-right">
-                                <p className="text-sm text-gray-500">Price</p>
-                                <p className="text-lg font-semibold text-gray-800">
+                                <p className="text-sm text-g-500">Price</p>
+                                <p className="text-lg font-semibold text-g-800">
                                   ₹ {price}
                                 </p>
                               </div>
@@ -169,17 +169,17 @@ const UserDashboard = () => {
               <div className="flex min-h-[60vh] items-center justify-center">
                 <div className="w-full  rounded-2xl border border-pink-200 bg-white p-8 text-center shadow-sm">
                   {/* Icon */}
-                  <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-pink-400 text-white">
+                  <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-p-400 text-white">
                     <BsBoxSeam size={36} />
                   </div>
 
                   {/* Heading */}
-                  <h2 className="text-2xl font-semibold text-gray-800">
+                  <h2 className="text-2xl font-semibold text-g-800">
                     No Orders Yet
                   </h2>
 
                   {/* Description */}
-                  <p className="mt-2 text-sm text-gray-600">
+                  <p className="mt-2 text-sm text-g-600">
                     You haven’t placed any orders yet. Once you do, they’ll
                     appear here.
                   </p>
@@ -187,7 +187,7 @@ const UserDashboard = () => {
                   {/* CTA */}
                   <button
                     onClick={() => navigate("/allproduct")}
-                    className="mt-6 w-full rounded-lg bg-pink-500 px-6 py-3 text-sm font-medium text-white hover:bg-pink-600 transition cursor-pointer"
+                    className="mt-6 w-full rounded-lg bg-p-500 px-6 py-3 text-sm font-medium text-white hover:bg-p-600 transition cursor-pointer"
                   >
                     Start Shopping
                   </button>

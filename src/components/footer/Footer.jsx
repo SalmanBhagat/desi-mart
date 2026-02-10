@@ -20,21 +20,21 @@ const Footer = () => {
 
         {/* Right: Social Icons */}
         <div className="flex items-center gap-3">
-          <button className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-blue-600 hover:text-white transition cursor-pointer">
+          <a href="https://www.facebook.com/profile.php?id=61584940366513" target="_blank" rel="noopener noreferrer" className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-blue-600 hover:text-white transition cursor-pointer">
             <FaFacebookF size={14} />
-          </button>
+          </a>
 
-          <button className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-p-500 hover:text-white transition cursor-pointer">
+          <a href="https://www.instagram.com/mr_salman989/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-p-500 hover:text-white transition cursor-pointer">
             <FaInstagram size={14} />
-          </button>
+          </a>
 
-          <button className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-sky-500 hover:text-white transition cursor-pointer">
+          <a href="" target="_blank" rel="noopener noreferrer" className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-sky-500 hover:text-white transition cursor-pointer">
             <FaTwitter size={14} />
-          </button>
+          </a>
 
-          <button className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-blue-700 hover:text-white transition cursor-pointer">
+          <a href="https://www.linkedin.com/in/salman-bhagat-0b2710342/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 flex items-center justify-center rounded-full border border-white text-white hover:bg-blue-700 hover:text-white transition cursor-pointer">
             <FaLinkedinIn size={14} />
-          </button>
+          </a>
         </div>
 
       </div>

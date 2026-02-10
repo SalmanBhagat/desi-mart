@@ -113,9 +113,6 @@
   scrollbar-color: #f472b6 #fce7f3;
 }
   
-
-
-
 /* Light Theme (Default) */
 @theme {
   --color-black: #000000;
@@ -133,8 +130,8 @@
   --color-p-600: oklch(59.2% 0.249 0.584);       
   --color-p-700: oklch(52.5% 0.223 3.958);       
   --color-p-800: oklch(45.9% 0.187 3.815);        
-  /* --color-p-900: oklch(40.8% 0.153 2.432);       
-  --color-p-950: oklch(28.4% 0.109 3.907);  */
+  --color-p-900: oklch(40.8% 0.153 2.432);       
+  --color-p-950: oklch(28.4% 0.109 3.907); 
   
   /* Gray Theme */
   --color-g-50: oklch(98.5% 0.002 247.839);
@@ -148,7 +145,6 @@
   --color-g-800: oklch(27.8% 0.033 256.848);
   --color-g-900: oklch(21% 0.034 264.665);
   --color-g-950: oklch(13% 0.028 261.692);
-  --color-secondary: #F3E9E9;   /* very light pink bg */
 
   --color-danger: #FF1A1A;
   --color-green: #16985E;

@@ -4,14 +4,14 @@ import Navbar from "../navbar/Navbar"
 const Layout = ({children}) => {
   
   return (
-    <div className="min-h-screen flex flex-col ">
+    <div className="min-h-[100dvh] flex flex-col">
         {/* NAVBAR */}
       <header className="shrink-0">
         <Navbar />
       </header>
 
       {/* MAIN CONTENT */}
-      <main className="flex-1 bg-pink-50/40">
+      <main className="flex-1 bg-p-50/40">
         {children}
       </main>
 

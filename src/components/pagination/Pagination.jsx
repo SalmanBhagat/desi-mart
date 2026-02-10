@@ -1,7 +1,7 @@
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   return (
     <div className="flex items-center justify-between mt- px-2">
-      <p className="text-sm text-gray-600 hidden sm:block">
+      <p className="text-sm text-g-600 hidden sm:block">
         Page <span className="font-medium">{currentPage}</span> of{" "}
         <span className="font-medium">{totalPages}</span>
       </p>
@@ -13,8 +13,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           className={`px-3 py-1.5 rounded-lg text-sm border cursor-pointer
             ${
               currentPage === 1
-                ? "text-gray-400 border-gray-200 cursor-not-allowed"
-                : "text-gray-700 border-gray-300 hover:bg-pink-50"
+                ? "text-g-400 border-gray-200 cursor-not-allowed"
+                : "text-g-700 border-gray-300 hover:bg-p-50"
             }`}
         >
           Prev
@@ -29,8 +29,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
               className={`px-3 py-1.5 rounded-lg text-sm border cursor-pointer
                 ${
                   currentPage === page
-                    ? "bg-pink-500 text-white border-pink-500"
-                    : "text-gray-700 border-gray-300 hover:bg-pink-50"
+                    ? "bg-p-500 text-white border-pink-500"
+                    : "text-g-700 border-gray-300 hover:bg-p-50"
                 }`}
             >
               {page}
@@ -44,8 +44,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           className={`px-3 py-1.5 rounded-lg text-sm border cursor-pointer
             ${
               currentPage === totalPages
-                ? "text-gray-400 border-gray-200 cursor-not-allowed"
-                : "text-gray-700 border-gray-300 hover:bg-pink-50"
+                ? "text-g-400 border-gray-200 cursor-not-allowed"
+                : "text-g-700 border-gray-300 hover:bg-p-50"
             }`}
         >
           Next

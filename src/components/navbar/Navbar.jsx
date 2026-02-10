@@ -26,14 +26,14 @@ const Navbar = () => {
   const navlist = (
     <ul className="flex flex-col lg:flex-row gap-1 text-white font-medium text-md">
       <NavLink to="/" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
+        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
           Home
         </li>
       </NavLink>
 
       {/* All Product */}
       <NavLink to="/allproduct" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
+        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
           All Product
         </li>
       </NavLink>
@@ -41,7 +41,7 @@ const Navbar = () => {
       {/* Signup */}
       {!user && (
         <NavLink to="/signup" onClick={() => setOpen(false)}>
-          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
             Signup
           </li>
         </NavLink>
@@ -50,7 +50,7 @@ const Navbar = () => {
       {/* Login */}
       {!user && (
         <NavLink to="/login" onClick={() => setOpen(false)}>
-          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
             Login
           </li>
         </NavLink>
@@ -59,7 +59,7 @@ const Navbar = () => {
       {/* User */}
       {user?.role === "user" && (
         <NavLink to="/user-dashboard" onClick={() => setOpen(false)}>
-          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
             {user.name}
           </li>
         </NavLink>
@@ -67,7 +67,7 @@ const Navbar = () => {
 
       {/* Admin */}
       {user?.role === "admin" && (
-        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
+        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
           <Link to="/admin-dashboard" onClick={() => setOpen(false)}>
             {user.name}
           </Link>
@@ -78,7 +78,7 @@ const Navbar = () => {
       {user && (
         <li
           onClick={logout}
-          className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3"
+          className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3"
         >
           Logout
         </li>
@@ -88,7 +88,7 @@ const Navbar = () => {
       <NavLink to="/cart" onClick={() => setOpen(false)}>
         <li
           className="relative cursor-pointer 
-               lg:hover:bg-p-600 hover:bg-pink-800 
+               lg:hover:bg-p-600 hover:bg-p-800 
                py-2 px-3 rounded-md"
         >
           <FiShoppingCart className="text-xl" />
@@ -139,7 +139,7 @@ const Navbar = () => {
 
       {/* ================= MOBILE TOGGLE MENU ================= */}
       {open && (
-        <div className="absolute top-full right-0 w-full bg-pink-700 shadow-lg lg:hidden">
+        <div className="absolute top-full right-0 w-full bg-p-700 shadow-lg lg:hidden">
           {/* 🔍 Mobile Search Bar (MENU KE ANDAR, TOP PE) */}
           {/* <div className="px-3 py-3 border-b border-pink-400">
             <SearchBar />

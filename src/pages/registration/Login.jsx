@@ -111,12 +111,12 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-pink-100 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-p-100 px-4">
       {/* loader component */}
       {/* {loading && <Loader/>} */}
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
         {/* Title */}
-        <h2 className="text-2xl font-bold text-center text-gray-800">
+        <h2 className="text-2xl font-bold text-center text-g-800">
           Login your account
         </h2>
 
@@ -124,7 +124,7 @@ const Login = () => {
         <form className="mt-6 space-y-4">
           {/* Email */}
           <div>
-            <label className="block text-md font-medium text-gray-700 mb-1">
+            <label className="block text-md font-medium text-g-700 mb-1">
               Email Address
             </label>
             <input
@@ -144,7 +144,7 @@ const Login = () => {
 
           {/* Password */}
           <div>
-            <label className="block text-md font-medium text-gray-700 mb-1">
+            <label className="block text-md font-medium text-g-700 mb-1">
               Password
             </label>
             <input
@@ -162,7 +162,7 @@ const Login = () => {
             />
           </div>
 
-          {/* Signup Button */}
+          {/* Login Button */}
           <button
             type="button"
             onClick={userLoginFunction}
@@ -170,8 +170,8 @@ const Login = () => {
             className={`w-full mt-2 py-2 rounded-lg text-white font-semibold transition cursor-pointer
     ${
       loading
-        ? "bg-pink-400 cursor-not-allowed"
-        : "bg-pink-600 hover:bg-pink-700 cursor-pointer"
+        ? "bg-p-400 cursor-not-allowed"
+        : "bg-p-600 hover:bg-p-700 cursor-pointer"
     }
   `}
           >
@@ -179,12 +179,12 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Login Redirect */}
-        <p className="text-md text-center text-gray-600 mt-4">
+        {/* Signup Redirect */}
+        <p className="text-md text-center text-g-600 mt-4">
           Dont have an account?
           <Link
             to={"/signup"}
-            className="ml-1 text-pink-600 font-medium hover:underline cursor-pointer"
+            className="ml-1 text-p-600 font-medium hover:underline cursor-pointer"
           >
             Signup
           </Link>

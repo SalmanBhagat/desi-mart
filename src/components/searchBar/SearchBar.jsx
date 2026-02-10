@@ -22,7 +22,7 @@ const SearchBar = () => {
 
     {/* 🔍 Search */}
     <div className="relative w-full">
-      <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400">
+      <span className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-g-400">
         <HiOutlineSearch size={18} />
       </span>
 
@@ -47,7 +47,7 @@ const SearchBar = () => {
 
       {/* Category */}
       <div className="w-full min-[400px]:flex-1 min-[640px]:flex-none min-[640px]:w-50">
-        <label className="hidden min-[400px]:block text-[11px] sm:text-xs font-semibold text-gray-500 mb-0.5 sm:mb-1">
+        <label className="hidden min-[400px]:block text-[11px] sm:text-xs font-semibold text-g-500 mb-0.5 sm:mb-1">
           Category
         </label>
         <select
@@ -71,7 +71,7 @@ const SearchBar = () => {
 
       {/* Price */}
       <div className="w-full min-[400px]:flex-1 min-[640px]:flex-none min-[640px]:w-50">
-        <label className="hidden min-[400px]:block text-[11px] sm:text-xs font-semibold text-gray-500 mb-0.5 sm:mb-1">
+        <label className="hidden min-[400px]:block text-[11px] sm:text-xs font-semibold text-g-500 mb-0.5 sm:mb-1">
           Price Range
         </label>
         <select
@@ -98,7 +98,7 @@ const SearchBar = () => {
           className="
             w-full rounded-lg
             px-4 py-1.5 sm:px-5 sm:py-2.5
-            bg-p-50 text-pink-600
+            bg-p-50 text-p-600
             text-sm font-semibold
             hover:bg-p-100 transition cursor-pointer
           "

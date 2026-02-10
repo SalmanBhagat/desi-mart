@@ -66,7 +66,7 @@ const HeroSection = () => {
     lg:group-hover:block
   "
 >
-  <HiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />
+  <HiChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-p-500" />
 </button>
 
 {/* Next */}
@@ -83,7 +83,7 @@ const HeroSection = () => {
     lg:group-hover:block
   "
 >
-  <HiChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" />
+  <HiChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-p-500" />
 </button>
 
     </div>

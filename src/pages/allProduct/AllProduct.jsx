@@ -148,10 +148,10 @@ const AllProduct = () => {
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-10 mt-14">
   {/* Section Title */}
   <div className="mb-6 md:mb-8 text-center">
-    <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-gray-800">
+    <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-g-800">
       All Products
     </h1>
-    <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1 md:mt-2">
+    <p className="text-xs sm:text-sm md:text-base text-g-500 mt-1 md:mt-2">
       Discover our best quality products curated just for you
     </p>
   </div>
@@ -182,12 +182,12 @@ const AllProduct = () => {
               {/* Content */}
               <div className="p-3 sm:p-4 bg-[#FAF9F6]">
                 {/* Tag */}
-                <h2 className="text-[10px] sm:text-xs text-gray-400 font-medium mb-0.5">
+                <h2 className="text-[10px] sm:text-xs text-g-400 font-medium mb-0.5">
                   E-bharat
                 </h2>
 
                 {/* Title */}
-                <h3 className="text-sm sm:text-base font-semibold text-gray-800 truncate">
+                <h3 className="text-sm sm:text-base font-semibold text-g-800 truncate">
                   {title.substring(0, 35)}
                 </h3>
 
@@ -200,14 +200,14 @@ const AllProduct = () => {
                 {cartItems?.some((p) => p.id === item.id) ? (
                   <button
                     onClick={() => deleteCart(item)}
-                    className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-500 transition cursor-pointer"
+                    className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-p-500 transition cursor-pointer"
                   >
                     Delete from Cart
                   </button>
                 ) : (
                   <button
                     onClick={() => addCart(item)}
-                    className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-800 transition cursor-pointer"
+                    className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-p-800 transition cursor-pointer"
                   >
                     Add to Cart
                   </button>
