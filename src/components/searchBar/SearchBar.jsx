@@ -77,7 +77,7 @@ const SearchBar = () => {
         <select
           value={filterPrice}
           onChange={(e) => setFilterPrice(e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-3 py-1.5 sm:py-2 text-sm bg-white"
+          className="w-full rounded-lg border border-g-300 px-3 py-1.5 sm:py-2 text-sm bg-white"
         >
           <option value="">All Prices</option>
           <option value="0-500">Under ₹500</option>
@@ -98,9 +98,9 @@ const SearchBar = () => {
           className="
             w-full rounded-lg
             px-4 py-1.5 sm:px-5 sm:py-2.5
-            bg-pink-50 text-pink-600
+            bg-p-50 text-pink-600
             text-sm font-semibold
-            hover:bg-pink-100 transition
+            hover:bg-p-100 transition cursor-pointer
           "
         >
           Reset Filters

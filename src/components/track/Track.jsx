@@ -6,19 +6,19 @@ const Track = () => {
   const features = [
     {
       id: 1,
-      icon: <HiOutlineShoppingBag size={30} className="text-pink-600"/>,
+      icon: <HiOutlineShoppingBag size={30} className="text-p-600"/>,
       title: "Premium T-Shirts",
       desc: "Our T-Shirts are 100% made of cotton.",
     },
     {
       id: 2,
-      icon: <BsTruck size={30} className="text-pink-600"/>,
+      icon: <BsTruck size={30} className="text-p-600"/>,
       title: "Fast Delivery",
       desc: "Quick and reliable delivery across India.",
     },
     {
       id: 3,
-      icon: <FiRefreshCcw size={30} className="text-pink-600"/>,
+      icon: <FiRefreshCcw size={30} className="text-p-600"/>,
       title: "Easy Returns",
       desc: "7 days easy return & exchange policy.",
     },
@@ -30,7 +30,7 @@ const Track = () => {
         {features.map((item) => (
           <div
             key={item.id}
-            className="bg-gray-100 border border-gray-200 rounded-xl px-6 py-10 text-center hover:shadow-md transition"
+            className="bg-g-100 border border-gray-200 rounded-xl px-6 py-10 text-center hover:shadow-md transition"
           >
             {/* Icon Top Center */}
             <div className="flex justify-center mb-4">
@@ -40,12 +40,12 @@ const Track = () => {
             </div>
 
             {/* Title */}
-            <h3 className="text-base font-semibold text-gray-800 mb-1">
+            <h3 className="text-base font-semibold text-g-800 mb-1">
               {item.title}
             </h3>
 
             {/* Description */}
-            <p className="text-sm text-gray-600 leading-relaxed">
+            <p className="text-sm text-g-600 leading-relaxed">
               {item.desc}
             </p>
           </div>

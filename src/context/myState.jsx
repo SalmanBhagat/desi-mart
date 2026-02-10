@@ -6,9 +6,7 @@ import {
   doc,
   onSnapshot,
   orderBy,
-  Query,
   query,
-  QuerySnapshot,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { fireDB } from "../firebase/FirebaseConfig";
@@ -16,7 +14,7 @@ import { fireDB } from "../firebase/FirebaseConfig";
 const MyState = ({ children }) => {
   // Loading state
   const [loading, setLoading] = useState(false);
-
+  
   /* ============================================================
    📦              Get All Product Function
    ============================================================ */
@@ -153,7 +151,7 @@ const MyState = ({ children }) => {
     getAllProductFunction();
     getAllOrderFunctiom();
     getAllUserFunction();
-  }, []);
+  },[]);
 
   return (
     <myContext.Provider
@@ -173,7 +171,7 @@ const MyState = ({ children }) => {
         filterType, 
         setFilterType,
         filterPrice,
-        setFilterPrice
+        setFilterPrice,
       }}  
     >
       {children}

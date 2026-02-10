@@ -112,7 +112,7 @@ const ProductInfo = () => {
               onClick={() => deleteCart(product)}
               className="mt-3 sm:mt-4 w-full text-sm sm:text-base 
                          bg-pink-400 text-white py-1.5 sm:py-2 
-                         rounded-md sm:rounded-lg hover:bg-pink-500 transition"
+                         rounded-md sm:rounded-lg hover:bg-pink-500 transition cursor-pointer"
             >
               Delete from Cart
             </button>
@@ -121,7 +121,7 @@ const ProductInfo = () => {
               onClick={() => addCart(product)}
               className="mt-3 sm:mt-4 w-full text-sm sm:text-base 
                          bg-pink-600 text-white py-1.5 sm:py-2 
-                         rounded-md sm:rounded-lg hover:bg-pink-800 transition"
+                         rounded-md sm:rounded-lg hover:bg-pink-800 transition cursor-pointer"
             >
               Add to Cart
             </button>

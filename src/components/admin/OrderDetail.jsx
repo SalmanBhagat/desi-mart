@@ -22,7 +22,7 @@ const OrderDetail = () => {
         <div className="flex items-center justify-between px-6 py-4 bg-pink-400">
           <h2 className="text-xl font-semibold text-white">Order Details</h2>
 
-          <button onClick={() => setShowAll(!showAll)} className="bg-white text-pink-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-pink-50 transition">
+          <button onClick={() => setShowAll(!showAll)} className="bg-white text-pink-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-pink-50 transition cursor-pointer">
              {showAll ? "Show Less" : "View All Orders"}
           </button>
         </div>

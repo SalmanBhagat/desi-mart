@@ -88,14 +88,14 @@ const CategoryPage = () => {
                       {cartItems?.some((p) => p.id === item.id) ? (
                         <button
                           onClick={() => deleteCart(item)}
-                          className="mt-4 w-full bg-pink-400 text-white py-2 rounded-lg hover:bg-pink-500 transition"
+                          className="mt-4 w-full bg-pink-400 text-white py-2 rounded-lg hover:bg-pink-500 transition cursor-pointer"
                         >
                           Delete to Cart
                         </button>
                       ) : (
                         <button
                           onClick={() => addCart(item)}
-                          className="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800 transition"
+                          className="mt-4 w-full bg-pink-600 text-white py-2 rounded-lg hover:bg-pink-800 transition cursor-pointer"
                         >
                           Add to Cart
                         </button>

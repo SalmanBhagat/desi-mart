@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { enableIndexedDbPersistence, getFirestore } from "firebase/firestore";  
 import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
@@ -18,5 +18,10 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 const fireDB = getFirestore(app);
+
+// ENABLE OFFLINE SUPPORT PWA
+enableIndexedDbPersistence(fireDB).catch((err) => {
+  console.log("Firestore persistence error", err);
+});
 
 export {auth, fireDB}

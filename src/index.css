@@ -113,3 +113,55 @@
   scrollbar-color: #f472b6 #fce7f3;
 }
   
+
+
+
+/* Light Theme (Default) */
+@theme {
+  --color-black: #000000;
+  --color-gray-dark: #666666;
+  --color-gray: #D2D2D2;
+  --color-white: #FFFFFF;
+
+  /* 🌸 Light Pink Theme */
+  --color-p-50: oklch(97.1% 0.014 343.198);      
+  --color-p-100: oklch(94.8% 0.028 342.258);       
+  --color-p-200: oklch(89.9% 0.061 343.231);       
+  --color-p-300: oklch(82.3% 0.12 346.018);       
+  --color-p-400: oklch(71.8% 0.202 349.761);       
+  --color-p-500: oklch(65.6% 0.241 354.308);       
+  --color-p-600: oklch(59.2% 0.249 0.584);       
+  --color-p-700: oklch(52.5% 0.223 3.958);       
+  --color-p-800: oklch(45.9% 0.187 3.815);        
+  /* --color-p-900: oklch(40.8% 0.153 2.432);       
+  --color-p-950: oklch(28.4% 0.109 3.907);  */
+  
+  /* Gray Theme */
+  --color-g-50: oklch(98.5% 0.002 247.839);
+  --color-g-100: oklch(96.7% 0.003 264.542);
+  --color-g-200: oklch(92.8% 0.006 264.531);
+  --color-g-300: oklch(87.2% 0.01 258.338);
+  --color-g-400: oklch(70.7% 0.022 261.325);
+  --color-g-500: oklch(55.1% 0.027 264.364);
+  --color-g-600: oklch(44.6% 0.03 256.802);
+  --color-g-700: oklch(37.3% 0.034 259.733);
+  --color-g-800: oklch(27.8% 0.033 256.848);
+  --color-g-900: oklch(21% 0.034 264.665);
+  --color-g-950: oklch(13% 0.028 261.692);
+  --color-secondary: #F3E9E9;   /* very light pink bg */
+
+  --color-danger: #FF1A1A;
+  --color-green: #16985E;
+  --color-red: #FFA048;
+}
+
+/* 🌙 Dark Theme */
+.dark {
+  --color-bg: var(--color-g-950);
+  --color-secondary: var(--color-g-900);
+
+  --color-p-400: var(--color-p-700);
+  --color-p-500: var(--color-p-800);
+
+  --color-text: var(--color-g-50);
+}

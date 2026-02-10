@@ -84,6 +84,8 @@ const AddProductPage = () => {
     }
   };
 
+  
+
   // Update Product function
   const updateProductFunction = async () => {
     setLoading(true);
@@ -94,7 +96,7 @@ const AddProductPage = () => {
       setLoading(false);
       navigate("/admin-dashboard");
     } catch (error) {
-      console.log(error);
+      console.log(error.code);
       toast.error("product update failed!");
       setLoading(false);
     }
@@ -214,7 +216,7 @@ const AddProductPage = () => {
             onClick={updateProductFunction}
             disabled={loading}
             className={`w-full flex items-center justify-center gap-2 bg-pink-600 text-white py-2 rounded-lg font-semibold
-  hover:bg-pink-700 transition
+  hover:bg-pink-700 transition cursor-pointer
   ${loading && "opacity-70 cursor-not-allowed"}`}
           >
             {loading ? (

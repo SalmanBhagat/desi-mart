@@ -67,7 +67,7 @@ const UserDashboard = () => {
     onClick={() => navigate("/allproduct")}
     className="mt-4 sm:mt-6 rounded-lg bg-pink-500 
     px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm 
-    font-medium text-white transition hover:bg-pink-600"
+    font-medium text-white transition hover:bg-pink-600 cursor-pointer"
   >
     Start Shopping
   </button>
@@ -187,7 +187,7 @@ const UserDashboard = () => {
                   {/* CTA */}
                   <button
                     onClick={() => navigate("/allproduct")}
-                    className="mt-6 w-full rounded-lg bg-pink-500 px-6 py-3 text-sm font-medium text-white hover:bg-pink-600 transition"
+                    className="mt-6 w-full rounded-lg bg-pink-500 px-6 py-3 text-sm font-medium text-white hover:bg-pink-600 transition cursor-pointer"
                   >
                     Start Shopping
                   </button>

@@ -245,7 +245,7 @@ const CartPage = () => {
 
             {/* Action Button */}
             <button
-              className="mt-4 sm:mt-6 bg-pink-600 hover:bg-pink-700 text-white text-sm sm:text-base px-4 py-1.5 sm:px-6 sm:py-2 rounded-lg transition "
+              className="mt-4 sm:mt-6 bg-pink-600 hover:bg-pink-700 text-white text-sm sm:text-base px-4 py-1.5 sm:px-6 sm:py-2 rounded-lg transition cursor-pointer"
               onClick={() => navigate("/allproduct")}
             >
               Continue Shopping

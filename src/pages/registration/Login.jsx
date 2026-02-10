@@ -167,7 +167,7 @@ const Login = () => {
             type="button"
             onClick={userLoginFunction}
             disabled={loading}
-            className={`w-full mt-2 py-2 rounded-lg text-white font-semibold transition
+            className={`w-full mt-2 py-2 rounded-lg text-white font-semibold transition cursor-pointer
     ${
       loading
         ? "bg-pink-400 cursor-not-allowed"

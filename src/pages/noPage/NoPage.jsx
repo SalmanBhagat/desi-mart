@@ -36,7 +36,7 @@ const NotPage = () => {
           <button
             onClick={() => window.history.back()}
             className="px-5 py-2.5 rounded-lg border border-pink-400 
-                       text-pink-400 font-medium hover:bg-pink-50 transition"
+                       text-pink-400 font-medium hover:bg-pink-50 transition cursor-pointer"
           >
             Go Back
           </button>

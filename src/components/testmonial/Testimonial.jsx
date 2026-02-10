@@ -27,11 +27,11 @@ const Testimonial = () => {
     <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-10">
   {/* Section Title */}
   <div className="text-center mb-8 md:mb-12">
-    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+    <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-g-800">
       Testimonials
     </h2>
-    <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1 md:mt-2">
-      Trusted by <span className="text-pink-600 font-medium">customers</span> across India
+    <p className="text-xs sm:text-sm md:text-base text-g-500 mt-1 md:mt-2">
+      Trusted by <span className="text-p-600 font-medium">customers</span> across India
     </p>
   </div>
 
@@ -52,18 +52,18 @@ const Testimonial = () => {
         </div>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3 sm:mb-4 line-clamp-4 min-h-[80px] sm:min-h-[96px]">
+        <p className="text-xs sm:text-sm text-g-600 leading-relaxed mb-3 sm:mb-4 line-clamp-4 min-h-20 sm:min-h-24">
           “{item.desc}”
         </p>
 
         {/* Divider */}
-        <div className="w-8 sm:w-10 h-0.5 bg-pink-600 mx-auto mb-3 sm:mb-4"></div>
+        <div className="w-8 sm:w-10 h-0.5 bg-p-600 mx-auto mb-3 sm:mb-4"></div>
 
         {/* Name & Role */}
-        <h4 className="text-sm sm:text-base font-semibold text-gray-800">
+        <h4 className="text-sm sm:text-base font-semibold text-g-800">
           {item.name}
         </h4>
-        <p className="text-xs sm:text-sm text-gray-400">
+        <p className="text-xs sm:text-sm text-g-400">
           {item.role}
         </p>
       </div>

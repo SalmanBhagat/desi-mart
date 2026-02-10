@@ -152,14 +152,14 @@ const getPerPage = () => {
                       <div className="flex items-center justify-center gap-3">
                         <button
                           onClick={() => navigate(`/updateProduct/${item.id}`)}
-                          className="p-2 rounded-full text-blue-600 hover:bg-blue-100 transition"
+                          className="p-2 rounded-full text-blue-600 hover:bg-blue-100 transition cursor-pointer"
                           title="Edit"
                         >
                           <GrEdit size={18} />
                         </button>
                         <button
                           onClick={() => deleteProduct(item.id)}
-                          className="p-2 rounded-full text-red-600 hover:bg-red-100 transition"
+                          className="p-2 rounded-full text-red-600 hover:bg-red-100 transition cursor-pointer"
                           title="Delete"
                         >
                           <FiTrash2 size={18} />

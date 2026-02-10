@@ -219,7 +219,7 @@ const HomePageProductCard = () => {
             {/* EMPTY STATE */}
             {/* EMPTY STATE */}
             <div className="col-span-full w-full flex justify-center">
-              <div className="w-full bg-pink-400/10 border border-pink-300 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center shadow-sm">
+              <div className="w-full bg-p-400/10 border border-pink-300 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center shadow-sm">
                 {/* ICON */}
                 <div className="mx-auto mb-4 sm:mb-6 flex h-12 w-12 sm:h-18 sm:w-18 items-center justify-center rounded-full bg-pink-500 text-white">
                   <svg
@@ -255,7 +255,7 @@ const HomePageProductCard = () => {
                     setFilterPrice("");
                     setSearchKey("");
                   }}
-                  className="mt-4 sm:mt-6 inline-flex items-center justify-center rounded-lg bg-pink-500 px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white hover:bg-pink-600 transition cursor-pointer"
+                  className="mt-4 sm:mt-6 inline-flex items-center justify-center rounded-lg bg-p-500 px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium text-white hover:bg-pink-600 transition cursor-pointer"
                 >
                   Clear Filters
                 </button>
@@ -301,14 +301,14 @@ const HomePageProductCard = () => {
                   {cartItems?.some((p) => p.id === item.id) ? (
                     <button
                       onClick={() => deleteCart(item)}
-                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-500 transition"
+                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-400 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-500 transition cursor-pointer"
                     >
                       Delete from Cart
                     </button>
                   ) : (
                     <button
                       onClick={() => addCart(item)}
-                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-pink-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-800 transition"
+                      className="mt-3 sm:mt-4 w-full text-sm sm:text-base bg-p-600 text-white py-1.5 sm:py-2 rounded-md sm:rounded-lg hover:bg-pink-800 transition cursor-pointer"
                     >
                       Add to Cart
                     </button>

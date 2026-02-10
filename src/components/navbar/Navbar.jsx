@@ -1,8 +1,13 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import SearchBar from "../searchBar/SearchBar";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { MdShoppingCart } from "react-icons/md";
+import { TiShoppingCart } from "react-icons/ti";
+import { FiShoppingCart } from "react-icons/fi";
+import { FiSun, FiMoon } from "react-icons/fi";
+import MyContext from "../../context/myContext";
+
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -21,69 +26,90 @@ const Navbar = () => {
   const navlist = (
     <ul className="flex flex-col lg:flex-row gap-1 text-white font-medium text-md">
       <NavLink to="/" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
           Home
         </li>
       </NavLink>
 
-      
-        <NavLink to="/allproduct" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+      {/* All Product */}
+      <NavLink to="/allproduct" onClick={() => setOpen(false)}>
+        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
           All Product
         </li>
-        </NavLink>
+      </NavLink>
 
+      {/* Signup */}
       {!user && (
         <NavLink to="/signup" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
             Signup
-        </li>
-          </NavLink>
+          </li>
+        </NavLink>
       )}
 
+      {/* Login */}
       {!user && (
         <NavLink to="/login" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
             Login
-        </li>
-          </NavLink>
+          </li>
+        </NavLink>
       )}
 
+      {/* User */}
       {user?.role === "user" && (
         <NavLink to="/user-dashboard" onClick={() => setOpen(false)}>
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
             {user.name}
-        </li>
-          </NavLink>
+          </li>
+        </NavLink>
       )}
 
+      {/* Admin */}
       {user?.role === "admin" && (
-        <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
+        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3">
           <Link to="/admin-dashboard" onClick={() => setOpen(false)}>
             {user.name}
           </Link>
         </li>
       )}
 
+      {/* Logout */}
       {user && (
         <li
           onClick={logout}
-          className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3"
+          className="cursor-pointer lg:hover:bg-p-600 hover:bg-pink-800 py-2 px-3"
         >
           Logout
         </li>
       )}
-
-        <NavLink to="/cart" onClick={() => setOpen(false)}>
-      <li className="cursor-pointer lg:hover:bg-pink-600 hover:bg-pink-800 py-2 px-3">
-          Cart({cartCount.length})
-      </li>
-        </NavLink>
+      
+      {/* Cart */}
+      <NavLink to="/cart" onClick={() => setOpen(false)}>
+        <li
+          className="relative cursor-pointer 
+               lg:hover:bg-p-600 hover:bg-pink-800 
+               py-2 px-3 rounded-md"
+        >
+          <FiShoppingCart className="text-xl" />
+          <span
+            className="absolute top-1/3 left-1/1 
+                   -translate-x-1/1 -translate-y-1/2
+                   bg-white text-p-600
+                   text-xs font-bold
+                   w-4 h-4
+                   flex items-center justify-center
+                   rounded-full mb-1"
+          >
+            {cartCount.length}
+          </span>
+        </li>
+      </NavLink>
     </ul>
   );
 
   return (
-    <nav className="bg-pink-600 fixed w-full top-0 z-50">
+    <nav className="bg-p-600 fixed w-full top-0 z-50">
       {/* ================= TOP BAR ================= */}
       <div className="flex items-center justify-between px-3 py-3 lg:px-6">
         {/* Logo */}
