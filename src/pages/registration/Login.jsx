@@ -4,13 +4,7 @@ import myContext from "../../context/myContext";
 import { signInWithEmailAndPassword } from "firebase/auth/web-extension";
 import { toast } from "react-toastify";
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 const Login = () => {
   const context = useContext(myContext);
   const { loading, setLoading } = context;
@@ -36,18 +30,18 @@ const Login = () => {
 
     // 1 Empty check
     if (!email && !password) {
-      return toast.error("All feild are required");
+      return toast.warning("All feild are required");
     }
 
     // 2 Email regex
     if (!emailRegex.test(email)) {
-      return toast.error("Enter a Email format is incorrect");
+      return toast.warning("Enter a Email format is incorrect");
     }
 
     // 3 Password regex
-    // if (!passwordRegex.test(password)) {
-    //   return toast.error("Password is too weak");
-    // }
+    if (!passwordRegex.test(password)) {
+      return toast.warning("Password is too weak");
+    }
 
     setLoading(true);
 
@@ -60,7 +54,6 @@ const Login = () => {
       try {
         const q = query(
           collection(fireDB, "user"),
-          orderBy("time"),
           where("uid", "==", users.user.uid),
         );
         const data = onSnapshot(q, (QuerySnapshot) => {
@@ -91,19 +84,18 @@ const Login = () => {
       if (error.code == "auth/weak-password") {
         console.log("Please Enter minimum 6 characters");
         toast.error("Please Enter passwprd required minimum 6 characters");
-      }
-      if (error.code == "auth/invalid-email") {
+      } else if (error.code == "auth/invalid-email") {
         console.log("Enter a Email format is incorrect");
         toast.error("Enter a Email format is incorrect");
-      }
-      if (error.code == "auth/network-request-failed") {
+      } else if (error.code == "auth/network-request-failed") {
         console.log("Network issue releted");
         toast.error(
           "Network issue detected. Please try again after checking your internet.",
         );
-      }
-      if (error.code === "auth/invalid-credential") {
+      } else if (error.code === "auth/invalid-credential") {
         toast.error("Invalid email or password. Please try again.");
+      } else {
+        toast.error("Something went wrong");
       }
       console.log(error.code);
       setLoading(false);

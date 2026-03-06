@@ -8,6 +8,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
 import Pagination from "../pagination/Pagination";
+import PaginationLogic from "../pagination/Pagination";
 
 const ProductDetail = () => {
   const context = useContext(myContext);
@@ -30,12 +31,12 @@ const ProductDetail = () => {
     }
   };
 
-// Pagination Logic
-const getPerPage = () => {
-  if (window.innerWidth < 640) return 5;     // mobile
-  if (window.innerWidth < 1024) return 8;    // tablet
-  return 10;                                 // desktop
-};
+  // Pagination Logic
+  const getPerPage = () => {
+    if (window.innerWidth < 640) return 5; // mobile
+    if (window.innerWidth < 1024) return 8; // tablet
+    return 10; // desktop
+  };
 
   const [perPage, setPerPage] = useState(getPerPage());
 
@@ -49,15 +50,14 @@ const getPerPage = () => {
   );
 
   useEffect(() => {
-  const handleResize = () => {
-    setPerPage(getPerPage());
-    setCurrentPage(1); // important: reset page
-  };
+    const handleResize = () => {
+      setPerPage(getPerPage());
+      setCurrentPage(1); // important: reset page
+    };
 
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
-
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="mt-6">
@@ -126,7 +126,7 @@ const getPerPage = () => {
                       <img
                         src={item.productImageUrl}
                         alt="product"
-                        className="w-16 h-16 object-contain bg-g-100 rounded-lg"
+                        className="w-16 h-16 object-contain bg-white rounded-lg"
                       />
                     </td>
                     {/* Title */}
@@ -173,11 +173,58 @@ const getPerPage = () => {
           </table>
           {/* Pagination Bar */}
           <div className="border-t border-pink-100 bg-p-50/40 px-4 py-4">
-            <Pagination
+            <PaginationLogic
               currentPage={currentPage}
               totalPages={totalPages}
               onPageChange={setCurrentPage}
-            />
+            >
+              {({
+                currentPage,
+                totalPages,
+                pages,
+                canGoPrev,
+                canGoNext,
+                goToPage,
+                goPrev,
+                goNext,
+              }) => (
+                <div className="flex items-center justify-between px-2">
+                  <p className="text-sm text-g-600 hidden sm:block">
+                    Page <b>{currentPage}</b> of <b>{totalPages}</b>
+                  </p>
+
+                  <div className="flex gap-1">
+                    <button
+                      onClick={goPrev}
+                      disabled={!canGoPrev}
+                      className={`px-3 py-1.5 rounded-lg text-sm border ${currentPage === 1 ? "text-g-400 border-gray-200 cursor-not-allowed" : "text-g-700 border-gray-300 hover:bg-p-50 cursor-pointer"}`}
+                    >
+                      Prev
+                    </button>
+
+                    {pages.map((page) => (
+                      <button
+                        key={page}
+                        onClick={() => goToPage(page)}
+                        className={`px-3 py-1.5 rounded-lg text-sm border cursor-pointer 
+              ${page === currentPage ? "bg-p-500 text-white border-pink-500 " : "text-g-700 border-gray-300 hover:bg-p-50"}
+              `}
+                      >
+                        {page}
+                      </button>
+                    ))}
+
+                    <button
+                      onClick={goNext}
+                      disabled={!canGoNext}
+                      className={`px-3 py-1.5 rounded-lg text-sm border ${currentPage === totalPages ? "text-g-400 border-gray-200 cursor-not-allowed" : "text-g-700 border-gray-300 hover:bg-p-50 cursor-pointer"}`}
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              )}
+            </PaginationLogic>
           </div>
         </div>
       </div>

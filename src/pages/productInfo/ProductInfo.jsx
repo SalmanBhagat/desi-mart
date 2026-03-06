@@ -1,4 +1,4 @@
-import { FaRegStar, FaStar, FaStarHalf } from "react-icons/fa";
+import { FaRegStar, FaStar } from "react-icons/fa";
 import Layout from "../../components/layout/Layout";
 import { FaStarHalfStroke } from "react-icons/fa6";
 import { useContext, useEffect, useState } from "react";
@@ -13,7 +13,7 @@ import { addToCart, deleteFormCart } from "../../redux/cartSlice";
 
 const ProductInfo = () => {
   const context = useContext(myContext);
-  const { getAllProduct, loading, setLoading } = context;
+  const { loading, setLoading } = context;
   // state
   const [product, setProduct] = useState("");
 
@@ -40,12 +40,16 @@ const ProductInfo = () => {
   //  Add to cart
   const addCart = (item) => {
     dispatch(addToCart(item));
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast.success("Add to cart");
   }
 
   // delete from cart function
   const deleteCart = (item) => {
     dispatch(deleteFormCart(item));
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast.success("Delete form Cart");
   }
 

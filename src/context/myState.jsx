@@ -5,7 +5,6 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
-  orderBy,
   query,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -26,7 +25,7 @@ const MyState = ({ children }) => {
     setLoading(true);
 
     try {
-      const q = query(collection(fireDB, "products"), orderBy("time"));
+      const q = query(collection(fireDB, "products"));
       const data = onSnapshot(q, (QuerySnapshot) => {
         let productArray = [];
         QuerySnapshot.forEach((doc) => {
@@ -56,7 +55,7 @@ const MyState = ({ children }) => {
       // yahan hum bata rahe hain:
       // 1️⃣ kaunsi collection se data chahiye ("order")
       // 2️⃣ kis order me chahiye (time ke according)
-      const q = query(collection(fireDB, "order"), orderBy("time"));
+      const q = query(collection(fireDB, "order"));
       // 🔴 onSnapshot Firestore ka real-time listener hai
       // jaise hi database me kuch change hota hai
       // (new order, update, delete)
@@ -88,6 +87,8 @@ const MyState = ({ children }) => {
     setLoading(true);
     try {
       await deleteDoc(doc(fireDB, "order", id));
+      toast.dismiss();
+    toast.clearWaitingQueue();
       toast.success("Order Deleted Successfully");
       getAllOrderFunctiom();
       setLoading(false);
@@ -108,7 +109,7 @@ const MyState = ({ children }) => {
   const getAllUserFunction = async() => {
     setLoading(true);
     try {
-      const q = query(collection(fireDB, "user"), orderBy("time"));
+      const q = query(collection(fireDB, "user"));
       const data = onSnapshot(q, (QuerySnapshot) => {
         let userArray = [];
         QuerySnapshot.forEach((doc) => {
@@ -129,6 +130,8 @@ const MyState = ({ children }) => {
     setLoading(true);
     try {
       await deleteDoc(doc(fireDB, "user", id));
+      toast.dismiss();
+    toast.clearWaitingQueue();
       toast.success("User Deleted Successfull");
       getAllUserFunction();
       setLoading(false);

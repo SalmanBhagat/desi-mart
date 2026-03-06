@@ -10,16 +10,14 @@ const UserDashboard = () => {
   const user = JSON.parse(localStorage.getItem("users"));
 
   const context = useContext(myContext);
-  const { loading, getAllOrder } = context;
-
-
-  
+  const { getAllOrder } = context;
 
   const userOrders = getAllOrder?.filter((obj) => obj.userId === user?.uid);
+  console.log(userOrders);
 
   return (
     <Layout>
-      <div className="min-h-[calc(100vh-68px)] bg-p-50 p-4 md:p-8">
+      <div className="min-h-[calc(100vh-125px)] bg-p-50 p-4 md:p-8">
         <div className="max-w-5xl mx-auto space-y-6 mt-14.25">
           {/* ===== User Info ===== */}
           <div className="bg-white rounded-xl shadow p-6 flex items-center gap-4">
@@ -30,51 +28,49 @@ const UserDashboard = () => {
             />
 
             <div>
-              <h2 className="text-xl font-semibold text-g-800">
-                {user?.name}
-              </h2>
+              <h2 className="text-xl font-semibold text-g-800">{user?.name}</h2>
               <p className="text-sm text-g-500">{user?.email}</p>
             </div>
           </div>
 
           <div className="bg-p-400 p-5 rounded-xl shadow space-y-6">
             {/* ===== Order Details Box ===== */}
-            {getAllOrder.length > 0 ? (
-              userOrders.length === 0 ? (
+            {
+              userOrders?.length === 0 ? (
                 // user Empty box
-                <div className="flex flex-col items-center justify-center bg-white rounded-xl border border-dashed border-gray-300 
-  p-6 sm:p-8 md:p-10 text-center shadow-sm"
->
-  {/* Icon */}
-  <div
-    className="mb-4 sm:mb-5 flex items-center justify-center rounded-full bg-p-100
-    h-14 w-14 sm:h-16 sm:w-16 md:h-20 md:w-20"
-  >
-    <BsCartX className="text-p-500 text-2xl sm:text-3xl md:text-4xl" />
-  </div>
+                <div
+                  className="flex flex-col items-center justify-center bg-white rounded-xl border-gray-300 
+  p-4 md:p-6 text-center shadow-sm"
+                >
+                  {/* Icon */}
+                  <div
+                    className="mb-3 sm:mb-4 flex items-center justify-center rounded-full bg-p-100
+    h-14 w-14 md:h-14 md:w-14"
+                  >
+                    <BsCartX className="text-p-500 text-2xl md:text-2xl" />
+                  </div>
 
-  {/* Text */}
-  <h2 className="text-lg sm:text-xl font-semibold text-g-800">
-    No Orders Yet
-  </h2>
+                  {/* Text */}
+                  <h2 className="text-lg sm:text-xl font-semibold text-g-800">
+                    No Orders
+                  </h2>
 
-  <p className="mt-1.5 sm:mt-2 max-w-md text-xs sm:text-sm text-g-600">
-    You haven’t placed any orders yet. Start shopping to see your orders here.
-  </p>
+                  <p className="mt-1.5 sm:mt-2 max-w-md text-xs sm:text-sm text-g-600">
+                    Start shopping to see your orders here.
+                  </p>
 
-  {/* CTA */}
-  <button
-    onClick={() => navigate("/allproduct")}
-    className="mt-4 sm:mt-6 rounded-lg bg-p-500 
-    px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm 
+                  {/* CTA */}
+                  <button
+                    onClick={() => navigate("/allproduct")}
+                    className="mt-4 sm:mt-5 rounded-lg bg-p-500 
+    px-4 sm:px-6 py-2 text-xs sm:text-sm 
     font-medium text-white transition hover:bg-p-600 cursor-pointer"
-  >
-    Start Shopping
-  </button>
-</div>
-
+                  >
+                    Start Shopping
+                  </button>
+                </div>
               ) : (
-                map((order, index) => {
+                userOrders?.map((order, index) => {
                   const { status, cartItems } = order;
                   return (
                     <div
@@ -85,16 +81,12 @@ const UserDashboard = () => {
                       <div className="flex flex-wrap gap-4 justify-between">
                         <div>
                           <p className="text-xs text-g-500">Order ID</p>
-                          <p className="font-medium text-g-800">
-                            {order.id}
-                          </p>
+                          <p className="font-medium text-g-800">{order.id}</p>
                         </div>
 
                         <div>
                           <p className="text-xs text-g-500">Order Date</p>
-                          <p className="font-medium text-g-800">
-                            {order.date}
-                          </p>
+                          <p className="font-medium text-g-800">{order.date}</p>
                         </div>
 
                         <div>
@@ -122,7 +114,7 @@ const UserDashboard = () => {
                           return (
                             <div
                               key={id || idx}
-                              className="flex gap-3 sm:gap-4 items-start"
+                              className="flex gap-3 sm:gap-4 items-start pb-3 last:pb-0 border-dashed border-b border-g-300 last:border-none"
                             >
                               <img
                                 src={productImageUrl}
@@ -164,36 +156,7 @@ const UserDashboard = () => {
                   );
                 })
               )
-            ) : (
-              // Empty UI Box
-              <div className="flex min-h-[60vh] items-center justify-center">
-                <div className="w-full  rounded-2xl border border-pink-200 bg-white p-8 text-center shadow-sm">
-                  {/* Icon */}
-                  <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-p-400 text-white">
-                    <BsBoxSeam size={36} />
-                  </div>
-
-                  {/* Heading */}
-                  <h2 className="text-2xl font-semibold text-g-800">
-                    No Orders Yet
-                  </h2>
-
-                  {/* Description */}
-                  <p className="mt-2 text-sm text-g-600">
-                    You haven’t placed any orders yet. Once you do, they’ll
-                    appear here.
-                  </p>
-
-                  {/* CTA */}
-                  <button
-                    onClick={() => navigate("/allproduct")}
-                    className="mt-6 w-full rounded-lg bg-p-500 px-6 py-3 text-sm font-medium text-white hover:bg-p-600 transition cursor-pointer"
-                  >
-                    Start Shopping
-                  </button>
-                </div>
-              </div>
-            )}
+}
           </div>
         </div>
       </div>

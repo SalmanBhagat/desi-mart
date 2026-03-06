@@ -7,10 +7,6 @@ import UserDetail from "../../components/admin/UserDetail";
 import { useContext } from "react";
 import myContext from "../../context/myContext";
 
-
-// import { FaBoxOpen, FaUsers } from "react-icons/fa";
-// import { GoListOrdered } from "react-icons/go";
-
 const AdminDashboard = () => {
   // admin get data with localStorage
   const admin = JSON.parse(localStorage.getItem("users"));
@@ -88,7 +84,6 @@ const AdminDashboard = () => {
           </TabList>
 
           {/* ===== Tab Content ===== */}
-          
             <TabPanel>
               <ProductDetail/>
             </TabPanel>

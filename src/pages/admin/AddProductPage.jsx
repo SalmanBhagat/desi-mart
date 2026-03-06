@@ -51,7 +51,7 @@ const AddProductPage = () => {
     category: "",
     description: "",
     quantity: 1,
-    time: serverTimestamp(),
+    // time: serverTimestamp(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -59,25 +59,26 @@ const AddProductPage = () => {
     }),
   });
 
+  console.log(product);
+
+  // add product function
   const addProductFunction = async () => {
     // product state varieble se value destructure kiya direct
     const { title, price, productImageUrl, category, description } = product;
 
     // Validation
     if (!title || !price || !productImageUrl || !category || !description) {
-      toast.error("All fields are required");
+      toast.warning("All fields are required");
       return;
     }
 
     setLoading(true);
 
     try {
-      // const productRef = collection(fireDB, "products");
-      // await addDoc(productRef, product);
       await addDoc(collection(fireDB, "products"), {
-  ...product,
-  time: serverTimestamp(),
-});
+        ...product,
+        // time: serverTimestamp(),
+      });
 
       toast.success("Add Product Successfully");
       navigate("/admin-dashboard");

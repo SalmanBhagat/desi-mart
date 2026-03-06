@@ -2,7 +2,13 @@ import { useContext, useState } from "react";
 import myContext from "../../context/myContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { doc, getDoc, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { useEffect } from "react";
 
@@ -52,8 +58,7 @@ const AddProductPage = () => {
     category: "",
     description: "",
     quantity: 1,
-    time: serverTimestamp()
-,
+    // time: serverTimestamp(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -83,8 +88,6 @@ const AddProductPage = () => {
       setLoading(false);
     }
   };
-
-  
 
   // Update Product function
   const updateProductFunction = async () => {

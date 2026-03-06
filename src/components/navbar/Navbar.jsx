@@ -1,13 +1,8 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { MdShoppingCart } from "react-icons/md";
-import { TiShoppingCart } from "react-icons/ti";
 import { FiShoppingCart } from "react-icons/fi";
-import { FiSun, FiMoon } from "react-icons/fi";
-import MyContext from "../../context/myContext";
-
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -67,11 +62,11 @@ const Navbar = () => {
 
       {/* Admin */}
       {user?.role === "admin" && (
-        <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
-          <Link to="/admin-dashboard" onClick={() => setOpen(false)}>
+        <NavLink to="/admin-dashboard" onClick={() => setOpen(false)}>
+          <li className="cursor-pointer lg:hover:bg-p-600 hover:bg-p-800 py-2 px-3">
             {user.name}
-          </Link>
-        </li>
+          </li>
+        </NavLink>
       )}
 
       {/* Logout */}
@@ -83,24 +78,12 @@ const Navbar = () => {
           Logout
         </li>
       )}
-      
+
       {/* Cart */}
       <NavLink to="/cart" onClick={() => setOpen(false)}>
-        <li
-          className="relative cursor-pointer 
-               lg:hover:bg-p-600 hover:bg-p-800 
-               py-2 px-3 rounded-md"
-        >
+        <li className="relative cursor-pointer py-2 px-3 rounded-md lg:hover:bg-p-600 hover:bg-p-800">
           <FiShoppingCart className="text-xl" />
-          <span
-            className="absolute top-1/3 left-1/1 
-                   -translate-x-1/1 -translate-y-1/2
-                   bg-white text-p-600
-                   text-xs font-bold
-                   w-4 h-4
-                   flex items-center justify-center
-                   rounded-full mb-1"
-          >
+          <span className="absolute top-1.25 left-6.25 bg-p-50 text-p-600 text-[11px] font-bold w-3.5 h-3.5 flex items-center justify-center rounded-full border border-p-600">
             {cartCount.length}
           </span>
         </li>
@@ -122,11 +105,6 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden lg:block">{navlist}</div>
 
-        {/* Desktop Search */}
-        {/* <div className="hidden lg:block lg:w-80">
-          <SearchBar />
-        </div> */}
-
         {/* Mobile Toggle */}
         <button
           className="lg:hidden text-white text-2xl shrink-0 cursor-pointer"
@@ -140,11 +118,6 @@ const Navbar = () => {
       {/* ================= MOBILE TOGGLE MENU ================= */}
       {open && (
         <div className="absolute top-full right-0 w-full bg-p-700 shadow-lg lg:hidden">
-          {/* 🔍 Mobile Search Bar (MENU KE ANDAR, TOP PE) */}
-          {/* <div className="px-3 py-3 border-b border-pink-400">
-            <SearchBar />
-          </div> */}
-
           {/* Menu Items */}
           <div className="py-2">{navlist}</div>
         </div>

@@ -3,17 +3,11 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import Layout from "../../components/layout/Layout";
 import { BsCartX, BsTrash3 } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addToCart,
-  decrementQuantity,
-  deleteFormCart,
-  incrementQuantity,
-} from "../../redux/cartSlice";
+import { decrementQuantity, deleteFormCart, incrementQuantity } from "../../redux/cartSlice";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
-// import toast from "react-toastify"
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 
@@ -27,6 +21,8 @@ const CartPage = () => {
   // delete form cart fuction
   const deleteCart = (item) => {
     dispatch(deleteFormCart(item));
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast.success("delete to cart");
   };
 
@@ -64,7 +60,7 @@ const CartPage = () => {
     address: "",
     pincode: "",
     mobileNumber: "",
-    time: serverTimestamp(),
+    // time: serverTimestamp(),
     date: new Date().toLocaleString("en-US", {
       month: "short",
       day: "2-digit",
@@ -77,7 +73,7 @@ const CartPage = () => {
     const { name, address, pincode, mobileNumber } = addressInfo;
     // validation
     if (!name || !address || !pincode || !mobileNumber) {
-      return toast.success("All Feild are required!");
+      return toast.warning("All Feild are required!");
     }
 
     // Order info obj
@@ -87,8 +83,7 @@ const CartPage = () => {
       email: user.email,
       userId: user.uid,
       status: "confirmed",
-      time: serverTimestamp()
-,
+      // time: serverTimestamp(),
       date: new Date().toLocaleString("en-US", {
         month: "short",
         day: "2-digit",
@@ -105,7 +100,7 @@ const CartPage = () => {
         pincode: "",
         mobileNumber: "",
       });
-      toast.success("Order Placed Successfully");
+      toast.success("Order Placed Successfully 🎉");
     } catch (error) {
       console.log(error);
     }
@@ -113,13 +108,14 @@ const CartPage = () => {
 
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-6 py-10 mt-14.25">
-        <h1 className="text-3xl font-semibold mb-8">Shopping Cart</h1>
+      <div className="max-w-7xl mx-auto px-6 py-6 mt-14.25">
+        <h1 className="text-2xl font-semibold mb-5">Shopping Cart</h1>
 
         {cartItems?.length > 0 ? (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT CART ITEMS */}
-            <div className="lg:col-span-2 space-y-6 bg-g-50 rounded-xl p-4">
+            <div className="lg:col-span-2 space-y-6 bg-g-50 rounded-xl p-4 
+                max-h-[59vh] overflow-y-auto hide-scrollbar hide-scroll-bar scroll-smooth">
               {cartItems.map((item) => {
                 const {
                   id,
@@ -132,7 +128,7 @@ const CartPage = () => {
                 return (
                   <div
                     key={id}
-                    className="flex gap-6 border-b pb-6 last:border-none"
+                    className="flex gap-6 border-b pb-6 last:border-none last:pb-0"
                   >
                     {/* Image */}
                     <img
@@ -149,7 +145,6 @@ const CartPage = () => {
                         <span className="font-semibold text-lg text-green-600">
                           ₹{price.toLocaleString()}
                         </span>
-                        {/* <span className="line-through text-g-400 text-sm"> ₹{item.originalPrice.toLocaleString()} </span> <span className="text-green-600 text-sm"> {discount} </span> */}
                       </div>
                       {/* Actions */}
                       <div className="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-4 lg:gap-6 mt-2 md:mt-4">
@@ -162,7 +157,6 @@ const CartPage = () => {
                             <FaMinus size={12} />
                           </button>
                           <span className="px-2 sm:px-4">{quantity}</span>
-                          {/* <input type="text" value={quantity} className="w-2 mx-4" /> */}
                           <button
                             onClick={() => handleIncrement(id)}
                             className="px-2 py-1 cursor-pointer"
@@ -193,11 +187,6 @@ const CartPage = () => {
                   <span>Price ({cartItemTotal} items)</span>
                   <span>₹{cartTotal}</span>
                 </div>
-
-                {/* <div className="flex justify-between text-green-600">
-              <span>Discount</span>
-              <span>- ₹3,431</span>
-            </div> */}
 
                 <div className="flex justify-between">
                   <span>Delivery Charges</span>

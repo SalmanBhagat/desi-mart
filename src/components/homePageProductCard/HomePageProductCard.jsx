@@ -5,132 +5,7 @@ import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { addToCart, deleteFormCart } from "../../redux/cartSlice";
-import { HiOutlineSearch } from "react-icons/hi";
 import SearchBar from "../searchBar/SearchBar";
-
-// Product Data
-// const productData = [
-//   {
-//     id: 1,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Wireless Bluetooth Headphones",
-//     desc: "High-quality wireless headphones with deep bass and long battery life.",
-//     price: 1299,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 2,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Smart Fitness Band",
-//     desc: "Track your steps, heart rate, and sleep with this smart fitness band.",
-//     price: 999,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 3,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Portable Bluetooth Speaker",
-//     desc: "Compact speaker with powerful sound and water-resistant body.",
-//     price: 1599,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 4,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Fast Charging Power Bank",
-//     desc: "10000mAh power bank with fast charging and dual USB output.",
-//     price: 1199,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 5,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Noise Cancelling Earbuds",
-//     desc: "True wireless earbuds with active noise cancellation feature.",
-//     price: 1999,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 6,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Smart LED Desk Lamp",
-//     desc: "Touch control LED lamp with adjustable brightness levels.",
-//     price: 799,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 7,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Wireless Mouse",
-//     desc: "Ergonomic wireless mouse with smooth tracking and long battery life.",
-//     price: 599,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 8,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Mechanical Gaming Keyboard",
-//     desc: "RGB mechanical keyboard with durable keys for gaming and typing.",
-//     price: 2499,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 9,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Laptop Cooling Pad",
-//     desc: "High-speed fan cooling pad to prevent laptop overheating.",
-//     price: 899,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 10,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "USB Type-C Hub",
-//     desc: "Multi-port USB-C hub with HDMI, USB, and SD card slots.",
-//     price: 1499,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 11,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Smartphone Tripod Stand",
-//     desc: "Flexible tripod stand for mobile photography and video recording.",
-//     price: 499,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-//   {
-//     id: 12,
-//     image:
-//       "https://i.pinimg.com/736x/19/19/15/191915c8aab1dcf71bb41312c1ba9c53.jpg",
-//     title: "Wireless Charging Pad",
-//     desc: "Fast wireless charging pad compatible with all Qi devices.",
-//     price: 1099,
-//     trendingProductName: "Featured",
-//     quantity: 1,
-//   },
-// ];
 
 const HomePageProductCard = () => {
   const navigate = useNavigate();
@@ -154,12 +29,16 @@ const HomePageProductCard = () => {
   // add to Cart Function
   const addCart = (item) => {
     dispatch(addToCart(item));
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast.success("Add to Cart");
   };
 
   // Delete to cart function
   const deleteCart = (item) => {
     dispatch(deleteFormCart(item));
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast.success("delete from cart");
   };
 
@@ -186,16 +65,7 @@ const HomePageProductCard = () => {
       if (filterPrice === "5000+") return obj.price > 5000;
 
       return true;
-    })
-    // // Safe Regex Search
-    // .filter((obj) => {
-    //   if (!searchKey) return true;
-
-    //   const safeKey = searchKey.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    //   const regex = new RegExp(safeKey, "i");
-
-    //   return regex.test(obj.title);
-    // });
+    });
   return (
     <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 py-8 md:py-10">
       <SearchBar />
@@ -214,9 +84,7 @@ const HomePageProductCard = () => {
             <SkeletonLoader key={i} type="product-card" />
           ))
         ) : filteredProducts.length === 0 ? (
-          /* EMPTY STATE */
           <>
-            {/* EMPTY STATE */}
             {/* EMPTY STATE */}
             <div className="col-span-full w-full flex justify-center">
               <div className="w-full bg-p-400/10 border border-pink-300 rounded-xl sm:rounded-2xl p-5 sm:p-8 text-center shadow-sm">
@@ -263,7 +131,7 @@ const HomePageProductCard = () => {
             </div>
           </>
         ) : (
-          filteredProducts.map((item, index) => {
+          filteredProducts.slice(0, 16).map((item, index) => {
             const { id, title, price, productImageUrl } = item;
             return (
               <div

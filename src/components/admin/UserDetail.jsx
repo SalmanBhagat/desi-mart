@@ -2,10 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import myContext from "../../context/myContext";
 import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { useNavigate } from "react-router-dom";
-import Pagination from "../pagination/Pagination";
+import PaginationLogic from "../pagination/Pagination";
 
 const UserDetail = () => {
-
   const navigate = useNavigate();
 
   const context = useContext(myContext);
@@ -20,11 +19,11 @@ const UserDetail = () => {
   };
 
   // Pagination Logic
-const getPerPage = () => {
-  if (window.innerWidth < 640) return 5;     // mobile
-  if (window.innerWidth < 1024) return 8;    // tablet
-  return 10;                                 // desktop
-};
+  const getPerPage = () => {
+    if (window.innerWidth < 640) return 5; // mobile
+    if (window.innerWidth < 1024) return 8; // tablet
+    return 10; // desktop
+  };
 
   const [perPage, setPerPage] = useState(getPerPage());
 
@@ -38,14 +37,14 @@ const getPerPage = () => {
   );
 
   useEffect(() => {
-  const handleResize = () => {
-    setPerPage(getPerPage());
-    setCurrentPage(1); // important: reset page
-  };
+    const handleResize = () => {
+      setPerPage(getPerPage());
+      setCurrentPage(1); // important: reset page
+    };
 
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-}, []);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="mt-6">
@@ -55,7 +54,10 @@ const getPerPage = () => {
         <div className="flex items-center justify-between px-6 py-4 bg-p-400">
           <h2 className="text-xl font-semibold text-white">User Details</h2>
 
-          <button onClick={() => navigate("/signup")} className="bg-white text-p-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-p-50 transition cursor-pointer">
+          <button
+            onClick={() => navigate("/signup")}
+            className="bg-white text-p-500 font-medium px-4 py-2 rounded-lg shadow hover:bg-p-50 transition cursor-pointer"
+          >
             + Add User
           </button>
         </div>
@@ -99,85 +101,144 @@ const getPerPage = () => {
 
                 {/* Action Buttons */}
                 <div className="mt-6 flex justify-center gap-3">
-                  <button onClick={() => getAllUserFunction()} className="rounded-lg bg-white px-5 py-2 text-sm font-medium text-p-500 hover:bg-p-50 transition cursor-pointer">
+                  <button
+                    onClick={() => getAllUserFunction()}
+                    className="rounded-lg bg-white px-5 py-2 text-sm font-medium text-p-500 hover:bg-p-50 transition cursor-pointer"
+                  >
                     Refresh
                   </button>
 
-                  <button onClick={() => navigate("/signup")} className="rounded-lg border border-white/70 px-5 py-2 text-sm font-medium text-white hover:bg-white hover:text-p-500 transition cursor-pointer">
+                  <button
+                    onClick={() => navigate("/signup")}
+                    className="rounded-lg border border-white/70 px-5 py-2 text-sm font-medium text-white hover:bg-white hover:text-p-500 transition cursor-pointer"
+                  >
                     Invite User
                   </button>
                 </div>
               </div>
             </div>
           ) : (
-            <table className="w-full text-sm text-left">
-              <thead className="bg-p-100 text-p-700">
-                <tr>
-                  <th className="px-6 py-3 font-semibold">No</th>
-                  <th className="px-6 py-3 font-semibold">User ID</th>
-                  <th className="px-6 py-3 font-semibold">Name</th>
-                  <th className="px-6 py-3 font-semibold">Email</th>
-                  <th className="px-6 py-3 font-semibold">Role</th>
-                  <th className="px-6 py-3 font-semibold">Date</th>
-                  <th className="px-6 py-3 font-semibold text-center">
-                    Action
-                  </th>
-                </tr>
-              </thead>
+            <div className="relative overflow-x-auto bg-white rounded-xl shadow">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-p-100 text-p-700">
+                  <tr>
+                    <th className="px-6 py-3 font-semibold">No</th>
+                    <th className="px-6 py-3 font-semibold">User ID</th>
+                    <th className="px-6 py-3 font-semibold">Name</th>
+                    <th className="px-6 py-3 font-semibold">Email</th>
+                    <th className="px-6 py-3 font-semibold">Role</th>
+                    <th className="px-6 py-3 font-semibold">Date</th>
+                    <th className="px-6 py-3 font-semibold text-center">
+                      Action
+                    </th>
+                  </tr>
+                </thead>
 
-              <tbody className="divide-y divide-pink-100">
-                {loading
-                  ? Array.from({ length: 2 }).map((_, i) => (
-                      <SkeletonLoader key={i} type="user-table" />
-                    ))
-                  : paginatedUsers?.map((user, index) => {
-                      const { id, name, email, role, date } = user;
-                      return (
-                        <tr
-                          key={index}
-                          className="hover:bg-p-100/40 transition"
-                        >
-                          <td className="px-6 py-4">{(currentPage - 1) * perPage + index + 1}</td>
-                          <td className="px-6 py-4 font-medium uppercase">
-                            {id}
-                          </td>
-                          <td className="px-6 py-4">{name}</td>
-                          <td className="px-6 py-4">{email}</td>
-                          <td className="px-6 py-4">
-                            <span
-                              className={`px-3 py-1 text-xs rounded-full font-medium capitalize
+                <tbody className="divide-y divide-pink-100">
+                  {loading
+                    ? Array.from({ length: 2 }).map((_, i) => (
+                        <SkeletonLoader key={i} type="user-table" />
+                      ))
+                    : paginatedUsers?.map((user, index) => {
+                        const { id, name, email, role, date } = user;
+                        return (
+                          <tr
+                            key={index}
+                            className="hover:bg-p-100/40 transition"
+                          >
+                            <td className="px-6 py-5">
+                              {(currentPage - 1) * perPage + index + 1}
+                            </td>
+                            <td className="px-6 py-5 font-medium uppercase">
+                              {id}
+                            </td>
+                            <td className="px-6 py-5">{name}</td>
+                            <td className="px-6 py-5">{email}</td>
+                            <td className="px-6 py-5">
+                              <span
+                                className={`px-3 py-1 text-xs rounded-full font-medium capitalize
                           ${roleStyles[role] || "bg-g-100 text-g-700"}
                         `}
-                            >
-                              {role}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm">{date}</td>
-                          <td className="px-6 py-4 text-center">
-                            <button
-                              onClick={() => userDelete(id)}
-                              className="px-3 py-1 text-xs rounded-md
+                              >
+                                {role}
+                              </span>
+                            </td>
+                            <td className="px-6 py-5 whitespace-nowrap text-sm">
+                              {date}
+                            </td>
+                            <td className="px-6 py-5 text-center">
+                              <button
+                                onClick={() => userDelete(id)}
+                                className="px-3 py-1 text-xs rounded-md
              border border-pink-400 text-p-500
              hover:bg-p-400 hover:text-white
              transition cursor-pointer"
-                            >
-                              Remove
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-              </tbody>
-            </table>
+                              >
+                                Remove
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                </tbody>
+              </table>
+              {/* Pagination Bar */}
+              <div className="border-t border-pink-100 bg-p-50/40 px-4 py-4">
+                <PaginationLogic
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                >
+                  {({
+                    currentPage,
+                    totalPages,
+                    pages,
+                    canGoPrev,
+                    canGoNext,
+                    goToPage,
+                    goPrev,
+                    goNext,
+                  }) => (
+                    <div className="flex items-center justify-between px-2">
+                      <p className="text-sm text-g-600 hidden sm:block">
+                        Page <b>{currentPage}</b> of <b>{totalPages}</b>
+                      </p>
+
+                      <div className="flex gap-1">
+                        <button
+                          onClick={goPrev}
+                          disabled={!canGoPrev}
+                          className={`px-3 py-1.5 rounded-lg text-sm border ${currentPage === 1 ? "text-g-400 border-gray-200 cursor-not-allowed" : "text-g-700 border-gray-300 hover:bg-p-50 cursor-pointer"}`}
+                        >
+                          Prev
+                        </button>
+
+                        {pages.map((page) => (
+                          <button
+                            key={page}
+                            onClick={() => goToPage(page)}
+                            className={`px-3 py-1.5 rounded-lg text-sm border cursor-pointer 
+              ${page === currentPage ? "bg-p-500 text-white border-pink-500" : "text-g-700 border-gray-300 hover:bg-p-50"}
+              `}
+                          >
+                            {page}
+                          </button>
+                        ))}
+
+                        <button
+                          onClick={goNext}
+                          disabled={!canGoNext}
+                          className={`px-3 py-1.5 rounded-lg text-sm border ${currentPage === totalPages ? "text-g-400 border-gray-200 cursor-not-allowed" : "text-g-700 border-gray-300 hover:bg-p-50 cursor-pointer"}`}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </PaginationLogic>
+              </div>
+            </div>
           )}
-            {/* Pagination Bar */}
-          <div className="border-t border-pink-100 bg-p-50/40 px-4 py-4">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          </div>
         </div>
       </div>
     </div>

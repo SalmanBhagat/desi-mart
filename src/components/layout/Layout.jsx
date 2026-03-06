@@ -4,7 +4,7 @@ import Navbar from "../navbar/Navbar"
 const Layout = ({children}) => {
   
   return (
-    <div className="min-h-[100dvh] flex flex-col">
+    <div className="min-h-dvh flex flex-col bg-p-50">
         {/* NAVBAR */}
       <header className="shrink-0">
         <Navbar />

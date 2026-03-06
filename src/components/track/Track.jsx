@@ -34,7 +34,6 @@ const Track = () => {
           >
             {/* Icon Top Center */}
             <div className="flex justify-center mb-4">
-              {/* <div className="w-14 h-14 flex items-center justify-center rounded-full bg-red-50 text-red-600"> */}
                 {item.icon}
               {/* </div> */}
             </div>

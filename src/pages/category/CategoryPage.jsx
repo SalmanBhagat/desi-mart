@@ -17,8 +17,6 @@ const CategoryPage = () => {
   const context = useContext(myContext);
   const { getAllProduct, loading } = context;
 
-
-
   const filterProduct = getAllProduct?.filter((obj) =>
     obj.category.includes(categoryname),
   );
@@ -28,12 +26,16 @@ const CategoryPage = () => {
   // add to cart Function
   const addCart = (item) => {
     dispatch(addToCart(item));
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast.success("add to Cart");
   };
 
   // delete from cart
   const deleteCart = (item) => {
     dispatch(deleteFormCart(item));
+    toast.dismiss();
+    toast.clearWaitingQueue();
     toast.success("Delete form Cart");
   };
 

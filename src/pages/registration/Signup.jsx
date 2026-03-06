@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import myContext from "../../context/myContext";
 import { toast } from "react-toastify";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
 import { auth, fireDB } from "../../firebase/FirebaseConfig";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 
@@ -28,7 +27,7 @@ const Signup = () => {
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 
   // User Signup function
-  const userSignupFunction = async () => {
+  const userSignupFunction = async (e) => {
     // validation
     const name = userSignup.name.trim();
     const email = userSignup.email.trim();
@@ -36,23 +35,23 @@ const Signup = () => {
 
     // 1️ Empty check
     if (!name && !email && !password) {
-      return toast.error("all feild are required");
+      return toast.warning("all feild are required");
     }
 
     // 2️ Name regex
     if (!nameRegex.test(name)) {
-      return toast.error("Name should contain only letters and spaces");
+      return toast.warning("Name should contain only letters and spaces");
     }
 
     // 3️ Email regex
     if (!emailRegex.test(email)) {
-      return toast.error("Enter a Email format is incorrect");
+      return toast.warning("Enter a Email format is incorrect");
     }
 
     // 4️ Password regex
-    // if (!passwordRegex.test(password)) {
-    //   return toast.error("Password is too weak");
-    // }
+    if (!passwordRegex.test(password)) {
+      return toast.warning("Password is too weak");
+    }
 
     setLoading(true);
 
@@ -62,20 +61,20 @@ const Signup = () => {
         userSignup.email,
         userSignup.password,
       );
+
       // create user object
       const user = {
         name: userSignup.name,
         email: userSignup.email,
         uid: users.user.uid,
         role: userSignup.role,
-        time: serverTimestamp(),
+        // time: serverTimestamp(),
         date: new Date().toLocaleString("en-Us", {
           month: "short",
           day: "2-digit",
           year: "numeric",
         }),
       };
-
 
       // Create user refrence
       const userRefrence = collection(fireDB, "user");
@@ -89,23 +88,27 @@ const Signup = () => {
         password: "",
       });
 
+      localStorage.setItem("users", JSON.stringify(user));
       toast.success("user signup successfully");
 
       setLoading(false);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       if (error.code == "auth/weak-password") {
         console.log("Please Enter minimum 6 characters");
-        toast.error("Please Enter passwprd required minimum 6 characters")
-      }
-      if (error.code == "auth/invalid-email") {
+        toast.error("Please Enter passwprd required minimum 6 characters");
+      } else if (error.code == "auth/invalid-email") {
         console.log("Enter a Email format is incorrect");
         toast.error("Enter a Email format is incorrect");
-      }
-      if (error.code == "auth/network-request-failed") {
+      } else if (error.code == "auth/network-request-failed") {
         console.log("Network issue releted");
-        toast.error("Network issue detected. Please try again after checking your internet.");
+        toast.error(
+          "Network issue detected. Please try again after checking your internet.",
+        );
+      } else {
+        toast.error("Something went wrong");
       }
+
       console.log(error.code);
       setLoading(false);
     }
