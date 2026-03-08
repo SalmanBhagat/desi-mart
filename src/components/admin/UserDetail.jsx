@@ -3,6 +3,8 @@ import myContext from "../../context/myContext";
 import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { useNavigate } from "react-router-dom";
 import PaginationLogic from "../pagination/Pagination";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const UserDetail = () => {
   const navigate = useNavigate();
@@ -118,7 +120,7 @@ const UserDetail = () => {
               </div>
             </div>
           ) : (
-            <div className="relative overflow-x-auto bg-white rounded-xl shadow">
+            <div className="hide-scroll-bar overflow-x-auto bg-white">
               <table className="w-full text-sm text-left">
                 <thead className="bg-p-100 text-p-700">
                   <tr>
@@ -182,63 +184,63 @@ const UserDetail = () => {
                       })}
                 </tbody>
               </table>
-              {/* Pagination Bar */}
-              <div className="border-t border-pink-100 bg-p-50/40 px-4 py-4">
-                <PaginationLogic
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={setCurrentPage}
-                >
-                  {({
-                    currentPage,
-                    totalPages,
-                    pages,
-                    canGoPrev,
-                    canGoNext,
-                    goToPage,
-                    goPrev,
-                    goNext,
-                  }) => (
-                    <div className="flex items-center justify-between px-2">
-                      <p className="text-sm text-g-600 hidden sm:block">
-                        Page <b>{currentPage}</b> of <b>{totalPages}</b>
-                      </p>
-
-                      <div className="flex gap-1">
-                        <button
-                          onClick={goPrev}
-                          disabled={!canGoPrev}
-                          className={`px-3 py-1.5 rounded-lg text-sm border ${currentPage === 1 ? "text-g-400 border-gray-200 cursor-not-allowed" : "text-g-700 border-gray-300 hover:bg-p-50 cursor-pointer"}`}
-                        >
-                          Prev
-                        </button>
-
-                        {pages.map((page) => (
-                          <button
-                            key={page}
-                            onClick={() => goToPage(page)}
-                            className={`px-3 py-1.5 rounded-lg text-sm border cursor-pointer 
-              ${page === currentPage ? "bg-p-500 text-white border-pink-500" : "text-g-700 border-gray-300 hover:bg-p-50"}
-              `}
-                          >
-                            {page}
-                          </button>
-                        ))}
-
-                        <button
-                          onClick={goNext}
-                          disabled={!canGoNext}
-                          className={`px-3 py-1.5 rounded-lg text-sm border ${currentPage === totalPages ? "text-g-400 border-gray-200 cursor-not-allowed" : "text-g-700 border-gray-300 hover:bg-p-50 cursor-pointer"}`}
-                        >
-                          Next
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </PaginationLogic>
-              </div>
             </div>
           )}
+              {/* Pagination Bar */}
+              <div className="border-t border-pink-100 bg-white px-4 py-4">
+                <div className="flex items-center justify-between px-2">
+                  <p className="text-sm text-g-600 hidden sm:block">
+                    Page <b>{currentPage}</b> of <b>{totalPages}</b>
+                  </p>
+
+                  <Stack spacing={2}>
+                    <Pagination
+                      count={totalPages}
+                      page={currentPage}
+                      onChange={(e, value) => setCurrentPage(value)}
+                      shape="rounded"
+                      siblingCount={0}
+                      boundaryCount={1}
+                      sx={{
+                        "& .MuiPaginationItem-root": {
+                          border: "1px solid #d1d5db",
+                          fontSize: "14px",
+                          borderRadius: "8px",
+                        },
+
+                        "& .MuiPaginationItem-root:hover": {
+                          backgroundColor: "#fdf2f8",
+                        },
+
+                        "& .Mui-selected": {
+                          backgroundColor: "#F6339A !important",
+                          color: "white",
+                          borderColor: "#ec4899",
+                        },
+                        /* Disabled buttons (Prev / Next) */
+                        "& .MuiPaginationItem-root.Mui-disabled": {
+                          cursor: "not-allowed",
+                          color: "#9ca3af",
+                          borderColor: "#e5e7eb",
+                          pointerEvents: "auto",
+                        },
+
+                        /* Ellipsis (...) styling */
+                        "& .MuiPaginationItem-ellipsis": {
+                          border: "1px solid #d1d5db",
+                          borderRadius: "8px",
+                          height: "32px",
+                          minWidth: "32px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#6b7280",
+                        },
+                      }}
+                    />
+                  </Stack>
+                </div>
+              </div>
         </div>
       </div>
     </div>

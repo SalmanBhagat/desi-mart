@@ -17,4 +17,3 @@ const PaginationLogic = ({ currentPage, totalPages, onPageChange, children }) =>
 };
 
 export default PaginationLogic;
-
