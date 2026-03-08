@@ -104,7 +104,6 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-p-100 px-4">
-      {/* loader component */}
       {/* {loading && <Loader/>} */}
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
         {/* Title */}

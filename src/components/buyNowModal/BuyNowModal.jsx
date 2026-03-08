@@ -1,7 +1,4 @@
-import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { fireDB } from "../../firebase/FirebaseConfig";
 
 const BuyNowModal = ({ addressInfo, setAddressInfo, buyNowFunction }) => {
   const [open, setOpen] = useState(false);

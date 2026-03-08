@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Layout from "../../components/layout/Layout";
 import myContext from "../../context/myContext";
-import { BsBoxSeam, BsCartX } from "react-icons/bs";
+import { BsCartX } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {

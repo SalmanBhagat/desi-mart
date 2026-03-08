@@ -51,30 +51,15 @@ const MyState = ({ children }) => {
   const getAllOrderFunctiom = async () => {
     setLoading(true);
     try {
-      // 🔹 Firestore ke liye ek query bana rahe hain
-      // yahan hum bata rahe hain:
-      // 1️⃣ kaunsi collection se data chahiye ("order")
-      // 2️⃣ kis order me chahiye (time ke according)
       const q = query(collection(fireDB, "order"));
-      // 🔴 onSnapshot Firestore ka real-time listener hai
-      // jaise hi database me kuch change hota hai
-      // (new order, update, delete)
-      // ye function automatic dobara call ho jata hai
       const data = onSnapshot(q, (QuerySnapshot) => {
         let orderArray = [];
-        // 🔁 QuerySnapshot ke andar har ek document (order) pe loop
         QuerySnapshot.forEach((doc) => {
-          // 🔹 doc.data() = order ka actual data
-          // 🔹 doc.id = Firestore ka unique document id
-          // dono ko mila ke ek object bana rahe hain
           orderArray.push({ ...doc.data(), id: doc.id });
         });
         setGetAllOrder(orderArray);
         setLoading(false);
       });
-      // 🔌 ye unsubscribe function hai
-      // jab component unmount ho ya page change ho
-      // to Firestore listener band karne ke kaam aata hai
       return () => data;
     } catch (error) {
       console.log(error);

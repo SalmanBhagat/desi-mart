@@ -1,5 +1,5 @@
 import { BsTruck } from "react-icons/bs";
-import { FiShoppingBag, FiTruck, FiRefreshCcw } from "react-icons/fi";
+import { FiRefreshCcw } from "react-icons/fi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 
 const Track = () => {

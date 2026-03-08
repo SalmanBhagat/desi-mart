@@ -1,4 +1,3 @@
-// import { Trash2, Plus, Minus } from "lucide-react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import Layout from "../../components/layout/Layout";
 import { BsCartX, BsTrash3 } from "react-icons/bs";
@@ -8,7 +7,7 @@ import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 
 const CartPage = () => {
@@ -50,7 +49,6 @@ const CartPage = () => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  // ----------- Buy Now Finction ------------//
   // LocalStorage to get users
   const user = JSON.parse(localStorage.getItem("users"));
 

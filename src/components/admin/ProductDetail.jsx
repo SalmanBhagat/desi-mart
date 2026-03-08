@@ -7,8 +7,6 @@ import { GrEdit } from "react-icons/gr";
 import { deleteDoc, doc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { toast } from "react-toastify";
-// import Pagination from "../pagination/Pagination";
-// import PaginationLogic from "../pagination/Pagination";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 

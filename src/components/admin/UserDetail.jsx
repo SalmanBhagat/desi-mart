@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import myContext from "../../context/myContext";
 import { SkeletonLoader } from "../loader/SkeletonLoader";
 import { useNavigate } from "react-router-dom";
-import PaginationLogic from "../pagination/Pagination";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 

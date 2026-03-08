@@ -2,13 +2,7 @@ import { useContext, useState } from "react";
 import myContext from "../../context/myContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  doc,
-  getDoc,
-  serverTimestamp,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import { useEffect } from "react";
 
@@ -40,7 +34,7 @@ const categoryList = [
   },
 ];
 
-const AddProductPage = () => {
+const UpdateProductPage = () => {
   const context = useContext(myContext);
   const { loading, setLoading, getAllProductFunction } = context;
 
@@ -219,14 +213,13 @@ const AddProductPage = () => {
             onClick={updateProductFunction}
             disabled={loading}
             className={`w-full flex items-center justify-center gap-2 bg-p-600 text-white py-2 rounded-lg font-semibold
-  hover:bg-p-700 transition cursor-pointer
-  ${loading && "opacity-70 cursor-not-allowed"}`}
+  hover:bg-p-700 transition-all duration-200
+  ${loading ? "opacity-70 cursor-not-allowed" : "cursor-pointer"}`}
           >
             {loading ? (
               <>
-                {/* Circle Loader */}
-                <span className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                <span>Loading...</span>
+                <span className="h-4 w-4 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
+                <span>Updating...</span>
               </>
             ) : (
               "Update Product"
@@ -238,4 +231,4 @@ const AddProductPage = () => {
   );
 };
 
-export default AddProductPage;
+export default UpdateProductPage;

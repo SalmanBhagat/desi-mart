@@ -6,7 +6,8 @@ import { SkeletonLoader } from "../../components/loader/SkeletonLoader";
 import { addToCart, deleteFormCart } from "../../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import PaginationLogic from "../../components/pagination/Pagination";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 const AllProduct = () => {
   const navigate = useNavigate();
@@ -139,67 +140,63 @@ const AllProduct = () => {
         </div>
         {/* Pagination Bar */}
         <div className="px-4 mt-8">
-          <PaginationLogic
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          >
-            {({
-              pages,
-              currentPage,
-              canGoPrev,
-              canGoNext,
-              goPrev,
-              goNext,
-              goToPage,
-            }) => (
-              <div className="flex items-cente p-3 justify-center gap-2 flex-wrap">
-                {/* Prev */}
-                <button
-                  onClick={goPrev}
-                  disabled={!canGoPrev}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition
-    ${
-      !canGoPrev
-        ? "bg-pink-100 text-pink-300 cursor-not-allowed border border-p-100"
-        : "bg-white border border-p-200 text-p-400 hover:bg-p-100 hover:text-black/60 cursor-pointer"
-    }`}
-                >
-                  Prev
-                </button>
+          <Stack spacing={2} alignItems="center">
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(e, value) => setCurrentPage(value)}
+              shape="rounded"
+              siblingCount={0}
+              boundaryCount={1}
+              sx={{
+                "& .MuiPagination-ul": {
+                  gap: "6px",
+                },
 
-                {/* Page Numbers */}
-                {pages.map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => goToPage(page)}
-                    className={`w-9 h-9 rounded-full text-sm font-medium transition cursor-pointer
-              ${
-                currentPage === page
-                  ? "bg-p-400 text-white shadow"
-                  : "bg-p-100 text-g-700 hover:bg-p-200"
-              }`}
-                  >
-                    {page}
-                  </button>
-                ))}
+                "& .MuiPaginationItem-root": {
+                  border: "1px solid #e5e7eb",
+                  backgroundColor: "#fff",
+                  fontSize: "14px",
+                  borderRadius: "8px",
+                  height: "36px",
+                  minWidth: "36px",
+                  color: "#374151",
+                  transition: "all .2s ease",
+                },
 
-                {/* Next */}
-                <button
-                  onClick={goNext}
-                  disabled={!canGoNext}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition
-            ${
-              !canGoNext
-                ? "bg-pink-100 text-pink-300 cursor-not-allowed border border-p-100"
-                : "bg-white border border-p-200 text-p-400 hover:bg-p-100 hover:text-black/60 cursor-pointer"
-            }`}
-                >
-                  Next
-                </button>
-              </div>
-            )}
-          </PaginationLogic>
+                "& .MuiPaginationItem-root:hover": {
+                  backgroundColor: "#fdf2f8",
+                },
+
+                /* Active Page */
+                "& .Mui-selected": {
+                  backgroundColor: "#F6339A !important",
+                  color: "#fff",
+                  borderColor: "#F6339A",
+                },
+
+                /* Disabled buttons */
+                "& .MuiPaginationItem-root.Mui-disabled": {
+                  cursor: "not-allowed",
+                  color: "#9ca3af",
+                  borderColor: "#e5e7eb",
+                  pointerEvents: "auto",
+                },
+
+                /* Ellipsis (...) styling */
+                "& .MuiPaginationItem-ellipsis": {
+                  border: "1px solid #d1d5db",
+                  borderRadius: "8px",
+                  height: "32px",
+                  minWidth: "32px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#6b7280",
+                },
+              }}
+            />
+          </Stack>
         </div>
       </div>
     </Layout>
