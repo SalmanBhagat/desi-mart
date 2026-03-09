@@ -94,12 +94,17 @@ const Navbar = () => {
   return (
     <nav className="bg-p-600 fixed w-full top-0 z-50">
       {/* ================= TOP BAR ================= */}
-      <div className="flex items-center justify-between px-3 py-3 lg:px-6">
+      <div className="flex items-center justify-between px-3 py-3 lg:px-6 h-14">
         {/* Logo */}
         <Link to="/" className="shrink-0">
-          <h2 className="font-bold text-white text-[22px] lg:text-2xl">
-            Desi Mart
-          </h2>
+          <div class="flex items-center gap-1.5 sm:gap-2 text-xl sm:text-2xl font-bold">
+            <span class="text-xl sm:text-2xl">🛍️</span>
+            <span class="text-white">DESI</span>
+            <span class="relative text-[#FDB046]">
+              MART
+              <span class="absolute left-0 -bottom-0.5 sm:-bottom-0.7 h-0.5 lg:h-0.70 w-full bg-linear-to-r from-transparent via-[#FDB046] to-white rounded"></span>
+            </span>
+          </div>
         </Link>
 
         {/* Desktop Menu */}
