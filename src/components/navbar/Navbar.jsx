@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { FiShoppingCart } from "react-icons/fi";
+import { FaOpencart } from "react-icons/fa";
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("users"));
@@ -98,7 +99,8 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="shrink-0">
           <div class="flex items-center gap-1.5 sm:gap-2 text-xl sm:text-2xl font-bold">
-            <span class="text-xl sm:text-2xl">🛍️</span>
+            {/* <span class="text-xl sm:text-2xl">🛍️</span> */}
+            <FaOpencart color="white" size={30} />
             <span class="text-white">DESI</span>
             <span class="relative text-[#FDB046]">
               MART

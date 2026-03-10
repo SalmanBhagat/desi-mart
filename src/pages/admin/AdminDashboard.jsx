@@ -6,6 +6,7 @@ import OrderDetail from "../../components/admin/OrderDetail";
 import UserDetail from "../../components/admin/UserDetail";
 import { useContext } from "react";
 import myContext from "../../context/myContext";
+import CountUp from "react-countup";
 
 const AdminDashboard = () => {
   // admin get data with localStorage
@@ -46,7 +47,7 @@ const AdminDashboard = () => {
 
               <div>
                 <p className="text-sm text-g-500">Total Products</p>
-                <h3 className="text-2xl font-bold text-g-800">{getAllProduct.length}</h3>
+                <h3 className="text-2xl font-bold text-g-800"><CountUp end={getAllProduct.length} duration={2} /></h3>
               </div>
             </Tab>
 
@@ -62,7 +63,7 @@ const AdminDashboard = () => {
 
               <div>
                 <p className="text-sm text-g-500">Total Orders</p>
-                <h3 className="text-2xl font-bold text-g-800">{getAllOrder.length}</h3>
+                <h3 className="text-2xl font-bold text-g-800"><CountUp end={getAllOrder.length} duration={2} /></h3>
               </div>
             </Tab>
 
@@ -78,7 +79,7 @@ const AdminDashboard = () => {
 
               <div>
                 <p className="text-sm text-g-500">Total Users</p>
-                <h3 className="text-2xl font-bold text-g-800">{getAllUser.length}</h3>
+                <h3 className="text-2xl font-bold text-g-800"><CountUp end={getAllUser.length} duration={2} /></h3>
               </div>
             </Tab>
           </TabList>
