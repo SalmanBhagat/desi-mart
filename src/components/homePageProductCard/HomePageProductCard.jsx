@@ -48,7 +48,14 @@ const HomePageProductCard = () => {
 
   // -------- Filter Logic ---------//
   const filteredProducts = getAllProduct
-    .filter((obj) => obj.title.toLowerCase().includes(searchKey.toLowerCase()))
+    .filter((p) =>
+      searchKey
+        .toLowerCase()
+        // .replace(/[^a-z0-9\s]/g, "")
+        .trim()
+        .split(/\s+/)
+        .every((w) => p.title.toLowerCase().includes(w)),
+    )
     .filter((obj) =>
       filterType
         ? obj.category.toLowerCase().includes(filterType.toLowerCase())

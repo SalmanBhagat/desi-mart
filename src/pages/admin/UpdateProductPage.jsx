@@ -73,7 +73,7 @@ const UpdateProductPage = () => {
         category: product?.category,
         description: product?.description,
         quantity: product?.quantity,
-        time: product?.time,
+        // time: product?.time,
         date: product?.date,
       });
       setLoading(false);
